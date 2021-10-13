@@ -8,12 +8,13 @@ trees in scenes. Godot supports a variety of programming languages that can be
 used to program a game including GDScript, C++, and C# offcially supported with
 many others by the community. Godot only currently supports rendering with
 OpenGL ES 2 and 3 with Vulkan support comming in Godot 4
-([1])[https://en.wikipedia.org/wiki/Godot_(game_engine)] I will be using
+[[1]](https://en.wikipedia.org/wiki/Godot_(game_engine)). I will be using
 GDScript because I am the most familiar with that.
 
 ## What can Godot do?
 
-Godot has been used by many people to make many games with notables ones being: 
+Godot has been used by many people to make many popular 2D and 3D games with
+notables ones being: 
 
 - Carol Reed Mysteries
 - City Game Studio
@@ -30,3 +31,7 @@ so they must be good.
 Godot seems to have really good support for 2D with a tailored and custom 2D
 physics engine and rendering pipeline but 3D support seems to be a bit lacking
 due to a non complete renderer but that will improve in Godot 4.
+
+## How can a game be made with Godot?
+
+Godot works in a node based structured where
