@@ -3,13 +3,14 @@
 ## What is Godot?
 
 Godot is a cross-platform (Windows, Linux, MacOS, IOS, WebGL, ect.) 2D and 3D
-game engine written in primarly c++ that uses a node based system organised as
-trees in scenes. Godot supports a variety of programming languages that can be
-used to program a game including GDScript, C++, and C# offcially supported with
-many others by the community. Godot only currently supports rendering with
-OpenGL ES 2 and 3 with Vulkan support comming in Godot 4
-[[1]](https://en.wikipedia.org/wiki/Godot_(game_engine)). I will be using
-GDScript because I am the most familiar with that.
+free and open source game engine written in primarly C++ that uses a node based
+system organised as trees in scenes. Godot supports a variety of programming
+languages that can be used to program a game including GDScript, C++, and C#,
+and blocks offcially supported with many others by the community. Godot only
+currently supports rendering with OpenGL ES 2 and 3 with Vulkan support comming
+in Godot 4 [[1]](https://en.wikipedia.org/wiki/Godot_(game_engine)). I will be
+using GDScript because it's the recommended and default option and I am the
+most familiar with that.
 
 ## What can Godot do?
 
@@ -34,4 +35,12 @@ due to a non complete renderer but that will improve in Godot 4.
 
 ## How can a game be made with Godot?
 
-Godot works in a node based structured where
+Godot works in a node based structured as a tree in scenes where nodes inherit
+from other nodes giving them functionality of base nodes. For example the
+sprite node inherits the CanvasLayer node which gives it drawing functionality.
+Scenes can be used as main scenes for prefabs to put in to the main scenes.
+The tree system can also be used to add more data in to a parent node. For
+example a KinematicBody2D node can have a CollisionShape2D node which gives
+collision data. Transforms also depend on the parents' transform.
+[[2]](https://downloads.tuxfamily.org/godotengine/3.3.4/Godot_v3.3.4-stable_win64.exe.zip).
+
