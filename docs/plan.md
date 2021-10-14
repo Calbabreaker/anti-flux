@@ -26,13 +26,37 @@
 You build a factory from buildings that you pick that synergizes with each
 other to make enough antimatter to pay for the factory.
 
-### Objective
+#### Objective
 
 Place buildings that you can pick from (limited choice) every timestep that can
-synergize with each other. Use those buildings to make enough items to pay for
-the factory on every stage that happens every few timesteps and increases (the
-price) every stage.
+synergize with each other. Use those buildings to make enough antimatter to pay for
+the factory on every stage that happens every few timesteps and increases
+exponentially (the price) every stage. Because the price increases
+exponentially, you have to utilize syngergy to exponentially increase your
+production.
 
-### Winning condition
+#### Winning condition
 
 Pass through all the stages without being unable to pay for the factory.
+
+#### Theme
+
+- 2D top down fixed camera.
+- Quite dark with futuristic looking buildings.
+
+#### Steps
+
+1. Make a grid based placing system
+2. Make the antimatter currency system
+3. Make buildings generage antimatter (basic for now 1 antimatter per timestep)
+4. Make the payment system for every stage
+5. Make buildings that synergize
+6. Polish
+
+#### Buildings
+
+---- This part will need a lot of balancing ----
+
+- **Simple Generator:** 1 antimatter
+- **Enhancer:** Surrounding buildings double their production
+- 
