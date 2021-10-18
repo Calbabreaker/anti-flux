@@ -41,7 +41,7 @@ Pass through all the stages without being unable to pay for the factory.
 
 #### Theme
 
-- 2D top down fixed camera.
+- 2D top down fixed camera or moveable camera but limited area.
 - Quite dark with futuristic looking buildings.
 
 #### Steps
@@ -55,7 +55,7 @@ Pass through all the stages without being unable to pay for the factory.
 
 #### Buildings
 
----- This part will need a lot of balancing ----
+> This part will need a lot of balancing
 
 - **Simple Generator:** 1 antimatter
 - **Enhancer:** Surrounding buildings double their production
