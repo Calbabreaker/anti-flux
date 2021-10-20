@@ -19,7 +19,7 @@ static func inside_2d_array_bounds(array: Array, position: Vector2):
 # if inside bounds and something doesn't already exist there
 # will return false if so else true
 static func set_2d_array(array: Array, position: Vector2, value) -> bool:
-	if inside_2d_array_bounds(array, position) or array[position.y][position.x] != null:
+	if inside_2d_array_bounds(array, position) and array[position.y][position.x] == null:
 		array[position.y][position.x] = value
 		return true
 	else:
