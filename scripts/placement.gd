@@ -1,22 +1,32 @@
 extends Node2D
 
-var rows := 20
-var cols := 30
-
 var building_prefab := preload("res://scenes/building.tscn")
+var building_grid := Utils.create_grid(20, 30)
 onready var offset := position - Building.SIZE_VECTOR / 2
 
 var selected_building := SimpleGenerator
+var antimatter := 0
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_click"):
-		var offseted_mouse_pos = get_global_mouse_position() - offset
+		var offseted_mouse_pos = get_global_mouse_position()
 		var mouse_cell_pos = (offseted_mouse_pos / Building.SIZE).floor()
+		place_building(mouse_cell_pos)
 		
-		if Manager.place_building(mouse_cell_pos, selected_building):
-			var building_node = building_prefab.instance()
-			building_node.global_position = mouse_cell_pos * Building.SIZE
-			add_child(building_node)
+# place building only if not already exist at position
+func place_building(position: Vector2):
+	if Utils.inside_grid_bounds(building_grid, position) and building_grid[position.y][position.x] == null:
+		var building_node = building_prefab.instance()
+		building_node.building = selected_building.new()
+		building_node.global_position = position * Building.SIZE
+		$"BuildingGrid".add_child(building_node)
+		building_grid[position.y][position.x] = building_node
 
 func _on_Button_pressed() -> void:
-	Manager.timestep()
+	Utils.loop_through_grid(building_grid, funcref(self, "building_generator"))
+	
+	var text_label = $"CanvasLayer/AntimatterLabel"
+	text_label.text = "Antimatter %s" % (antimatter)
+
+func building_generator(building_node, x: int, y: int):
+	antimatter += building_node.building.generate()

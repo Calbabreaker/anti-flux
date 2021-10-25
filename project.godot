@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "SimpleGenerator",
 "language": "GDScript",
 "path": "res://scripts/building_data/simple_generator.gd"
+}, {
+"base": "Reference",
+"class": "Utils",
+"language": "GDScript",
+"path": "res://scripts/utils.gd"
 } ]
 _global_script_class_icons={
 "Building": "",
-"SimpleGenerator": ""
+"SimpleGenerator": "",
+"Utils": ""
 }
 
 [application]
@@ -32,7 +38,6 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-Utils="*res://scripts/utils.gd"
 Manager="*res://scripts/manager.gd"
 
 [display]

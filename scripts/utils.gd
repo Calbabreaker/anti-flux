@@ -1,4 +1,4 @@
-extends Node
+class_name Utils
 
 static func create_grid(rows: int, cols: int) -> Array:
 	var grid = []
@@ -22,4 +22,4 @@ static func loop_through_grid(grid: Array, callback: FuncRef):
 		if grid[y] != null:
 			for x in range(len(grid[y])):
 				if grid[y][x] != null:
-					callback.call_func(grid[y][x], grid, x, y)
+					callback.call_func(grid[y][x], x, y)
