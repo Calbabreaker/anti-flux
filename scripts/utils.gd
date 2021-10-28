@@ -2,7 +2,7 @@ class_name Utils
 
 static func create_grid(rows: int, cols: int) -> Array:
 	var grid = []
-	for i in range(rows):
+	for _i in range(rows):
 		var array = []
 		array.resize(cols)
 		grid.append(array)

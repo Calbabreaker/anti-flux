@@ -1,16 +1,24 @@
-extends Resource
-
+extends Sprite
 class_name Building
 
 const SIZE := 50
 const SIZE_VECTOR := Vector2(SIZE, SIZE)
 
-var cell_size: Vector2
+const antimatter_collect_prefab = preload("res://scenes/antimatter_collect.tscn")
 
-# to create a building, make a script that inherits this script
-func _init(p_cell_size: Vector2 = Vector2(1, 1)) -> void:
-	cell_size = p_cell_size
+var cell_size = Vector2.ONE
 
-# override this function to have generator fuctionality 
-func generate() -> int:
-	return 0
+func _enter_tree() -> void:
+	# make sprite fit to the building size
+	var size = texture.get_size()
+	scale = (SIZE_VECTOR / size) * cell_size
+	
+# override this function to do something on timestep
+func timestep():
+	pass
+
+func generate_antimatter(antimatter: int = 1):
+	for _i in range(antimatter):
+		var antimatter_collect = antimatter_collect_prefab.instance()
+		antimatter_collect.position = position
+		Manager.main_scene_node.add_child(antimatter_collect)

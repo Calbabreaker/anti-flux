@@ -9,15 +9,10 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Resource",
+"base": "Sprite",
 "class": "Building",
 "language": "GDScript",
 "path": "res://scripts/building.gd"
-}, {
-"base": "Building",
-"class": "SimpleGenerator",
-"language": "GDScript",
-"path": "res://scripts/building_data/simple_generator.gd"
 }, {
 "base": "Reference",
 "class": "Utils",
@@ -26,7 +21,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Building": "",
-"SimpleGenerator": "",
 "Utils": ""
 }
 
@@ -35,6 +29,10 @@ _global_script_class_icons={
 config/name="random godot game"
 run/main_scene="res://scenes/main.tscn"
 config/icon="res://assets/icon.png"
+
+[autoload]
+
+Manager="*res://scripts/manager.gd"
 
 [display]
 
