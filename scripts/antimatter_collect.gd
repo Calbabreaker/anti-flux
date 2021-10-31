@@ -1,10 +1,11 @@
 extends Sprite
 
 var target_pos = Vector2(32, 32)
-var speed := 500
+var speed := 750
+var amount := 1
 
 func _ready() -> void:
-	pass
+	modulate.s = log(float(amount)) / 10
 
 func _process(delta: float) -> void:
 	position = position.move_toward(target_pos, delta * speed)
@@ -12,4 +13,4 @@ func _process(delta: float) -> void:
 	
 	if position == target_pos:
 		queue_free()
-		Manager.add_antimatter()
+		Manager.add_antimatter(amount)

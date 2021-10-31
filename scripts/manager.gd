@@ -1,21 +1,25 @@
 extends Node
 
-const building_prefabs: Dictionary = {
+const stages := [
+	[25, 50, 100]
+]
+
+const building_prefabs := {
 	"Simple Generator": preload("res://scenes/buildings/simple_generator.tscn")
 }
 
-var building_grid := Utils.create_grid(15, 18)
+var building_grid := Utils.create_grid(10, 20)
 var antimatter := 0
 
 onready var main_scene_node = $"/root/Main"
 
 # create building only if not already exist at position
-func create_building(position: Vector2, prefab: PackedScene):
-	if Utils.inside_grid_bounds(Manager.building_grid, position) and building_grid[position.y][position.x] == null:
+func create_building(cell_pos: Vector2, prefab: PackedScene):
+	if Utils.inside_grid_bounds(Manager.building_grid, cell_pos) and building_grid[cell_pos.y][cell_pos.x] == null:
 		var building_node = prefab.instance()
-		building_node.global_position = position * Building.SIZE
 		main_scene_node.get_node("BuildingGrid").add_child(building_node)
-		building_grid[position.y][position.x] = building_node
+		building_node.position = cell_pos * Building.SIZE
+		building_grid[cell_pos.y][cell_pos.x] = building_node
 
 func timestep():
 	Utils.loop_through_grid(building_grid, funcref(self, "building_timestep"))
