@@ -9,10 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Sprite",
-"class": "Building",
+"base": "Reference",
+"class": "BuildingData",
 "language": "GDScript",
-"path": "res://scripts/building.gd"
+"path": "res://scripts/building_data.gd"
+}, {
+"base": "Sprite",
+"class": "BuildingWorld",
+"language": "GDScript",
+"path": "res://scripts/building_world.gd"
 }, {
 "base": "Reference",
 "class": "Utils",
@@ -20,7 +25,8 @@ _global_script_classes=[ {
 "path": "res://scripts/utils.gd"
 } ]
 _global_script_class_icons={
-"Building": "",
+"BuildingData": "",
+"BuildingWorld": "",
 "Utils": ""
 }
 

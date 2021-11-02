@@ -1,5 +1,5 @@
 extends Sprite
-class_name Building
+class_name BuildingWorld
 
 const SIZE := 64
 const SIZE_VECTOR := Vector2(SIZE, SIZE)

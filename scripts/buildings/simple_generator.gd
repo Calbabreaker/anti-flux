@@ -1,7 +1,7 @@
-extends Building
+extends BuildingWorld
 
-var times = 1
+var times = 2
 
 func timestep():
 	generate_antimatter(times)
-	times = ceil(times * 1.5)
+	times *= 2
