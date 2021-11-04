@@ -20,5 +20,5 @@ func timestep():
 func generate_antimatter(amount: int = 1):
 	var antimatter_collect = antimatter_collect_prefab.instance()
 	antimatter_collect.amount = amount
-	Manager.main_scene_node.add_child(antimatter_collect)
+	Manager.main_scene.add_child(antimatter_collect)
 	antimatter_collect.global_position = global_position
