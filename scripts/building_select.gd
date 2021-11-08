@@ -15,4 +15,4 @@ func set_random_building():
 	set_building(building_name)
 
 func _on_BuildingSelect_pressed() -> void:
-	Manager.select_building(current_building_name)
+	Manager.building_grid_node.select_building(current_building_name)

@@ -1,16 +1,37 @@
 extends Node2D
 
 var building_prefab := preload("res://scenes/building.tscn")
-onready var offset: Vector2 = ($"BuildingGrid").position - BuildingWorld.SIZE_VECTOR / 2
+onready var building_ghost := $"BuildingGhost"
+onready var offset: Vector2 = BuildingWorld.SIZE_VECTOR / 2
 
-var antimatter := 0
+var selected_building
+
+func _ready() -> void:
+	randomize() # set new seed (based on time)
+	
+	# create starting buildings
+	#for i in range(2):
+		#Manager.create_building(Utils.random_in_grid(Manager.building_grid), "Simple Generator")
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_click") and Manager.selected_building:
-		var offseted_mouse_pos = get_local_mouse_position() - offset
-		var mouse_cell_pos = (offseted_mouse_pos / BuildingWorld.SIZE).floor()
-		Manager.create_building(mouse_cell_pos, Manager.selected_building)
-		Manager.selected_building = null
+	var offseted_mouse_pos = get_local_mouse_position() + offset
+	var mouse_cell_pos = (offseted_mouse_pos / BuildingWorld.SIZE).floor()
+	
+	if event is InputEventMouseMotion and building_ghost:
+		building_ghost.position = mouse_cell_pos * BuildingWorld.SIZE
 		
-func _on_Button_pressed() -> void:
-	Manager.timestep()
+	if event.is_action_pressed("ui_click") and selected_building:
+		Manager.create_building(mouse_cell_pos,  selected_building)
+		select_building(null)
+		Manager.timestep()
+
+func select_building(building_name):
+	selected_building = building_name
+	if building_name == null:
+		# hide ghost building
+		building_ghost.hide()
+	else:
+		# show ghost building
+		building_ghost.texture = Manager.building_data[selected_building].texture
+		building_ghost.show()
+		Manager.ui.building_select_panel.hide()

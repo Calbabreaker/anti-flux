@@ -12,5 +12,9 @@ func _process(delta: float) -> void:
 	rotation += 10
 	
 	if position == target_pos:
-		queue_free()
 		Manager.add_antimatter(amount)
+		queue_free()
+		
+		# last antimatter collect so show select building stuff
+		if get_parent().get_child_count() == 1:
+			Manager.ui.timestep_advance()
