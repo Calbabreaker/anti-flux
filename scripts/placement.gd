@@ -17,8 +17,10 @@ func _input(event: InputEvent) -> void:
 	var offseted_mouse_pos = get_local_mouse_position() + offset
 	var mouse_cell_pos = (offseted_mouse_pos / BuildingWorld.SIZE).floor()
 	
-	if event is InputEventMouseMotion and building_ghost:
+	if event is InputEventMouseMotion and selected_building:
 		building_ghost.position = mouse_cell_pos * BuildingWorld.SIZE
+		# thint red if can't place at mouse pos
+		building_ghost.self_modulate = Color.white if Manager.can_place_building(mouse_cell_pos) else Color.red
 		
 	if event.is_action_pressed("ui_click") and selected_building:
 		Manager.create_building(mouse_cell_pos,  selected_building)
