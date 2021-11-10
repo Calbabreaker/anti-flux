@@ -1,10 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scripts/placement.gd" type="Script" id=1]
 [ext_resource path="res://assets/antimatter.svg" type="Texture" id=2]
+[ext_resource path="res://assets/OpenSans-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scenes/building_select.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/building_select_panel.gd" type="Script" id=5]
-[ext_resource path="res://assets/font_main.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scripts/timestep_advance.gd" type="Script" id=7]
 [ext_resource path="res://assets/simple_generator.svg" type="Texture" id=8]
 [ext_resource path="res://scripts/building_world.gd" type="Script" id=9]
@@ -12,6 +12,7 @@
 [sub_resource type="Animation" id=2]
 resource_name = "Blink"
 loop = true
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("BuildingGrid/BuildingGhost:self_modulate")
 tracks/0/interp = 1
@@ -20,10 +21,14 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 0.435277, 1 ),
+"transitions": PoolRealArray( 1, 2.4623, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0.235294 ), Color( 1, 1, 1, 0.784314 ) ]
 }
+
+[sub_resource type="DynamicFont" id=3]
+size = 36
+font_data = ExtResource( 3 )
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.8, 0.8 )
@@ -40,7 +45,7 @@ margin_left = 70.2053
 margin_top = 4.2053
 margin_right = 465.205
 margin_bottom = 74.2053
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "0"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -57,7 +62,7 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 15
 size_flags_vertical = 15
-custom_fonts/font = ExtResource( 6 )
+custom_fonts/font = SubResource( 3 )
 text = "Next Stage: 0"
 align = 2
 __meta__ = {
@@ -147,8 +152,8 @@ script = ExtResource( 1 )
 
 [node name="BuildingGhost" type="Sprite" parent="BuildingGrid"]
 visible = false
-self_modulate = Color( 1, 1, 1, 0.784314 )
-z_index = -1
+self_modulate = Color( 1, 1, 1, 0.235294 )
+z_index = 1
 texture = ExtResource( 8 )
 script = ExtResource( 9 )
 

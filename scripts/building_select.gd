@@ -1,12 +1,13 @@
 extends Button
 
 var current_building_name: String
-onready var description_label: RichTextLabel = $"Description" 
+onready var description_label := $"Description" 
+onready var title_label := $"Title" 
 
 func set_building(name: String):
 	var building = Manager.building_data[name]
 	description_label.text = building.description
-	text = name
+	title_label.text = name
 	current_building_name = name
 
 func set_random_building():

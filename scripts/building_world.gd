@@ -14,11 +14,11 @@ func _enter_tree() -> void:
 	scale = (SIZE_VECTOR / size) * cell_size
 
 # override this function to do something on timestep
-func timestep():
+func timestep() -> void:
 	pass
 
-func generate_antimatter(amount: int = 1):
+func generate_antimatter(amount: int = 1) -> void:
 	var antimatter_collect = antimatter_collect_prefab.instance()
 	antimatter_collect.amount = amount
-	Manager.antimatter_collecs.add_child(antimatter_collect)
+	Manager.antimatter_collects.add_child(antimatter_collect)
 	antimatter_collect.global_position = global_position

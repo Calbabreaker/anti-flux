@@ -16,13 +16,14 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	var offseted_mouse_pos = get_local_mouse_position() + offset
 	var mouse_cell_pos = (offseted_mouse_pos / BuildingWorld.SIZE).floor()
+	var can_place = Manager.can_place_building(mouse_cell_pos)
 	
 	if event is InputEventMouseMotion and selected_building:
 		building_ghost.position = mouse_cell_pos * BuildingWorld.SIZE
-		# thint red if can't place at mouse pos
-		building_ghost.self_modulate = Color.white if Manager.can_place_building(mouse_cell_pos) else Color.red
+		# tint red if can't place at mouse pos
+		building_ghost.modulate = Color.white if can_place else Color.red
 		
-	if event.is_action_pressed("ui_click") and selected_building:
+	if event.is_action_pressed("ui_click") and selected_building and can_place:
 		Manager.create_building(mouse_cell_pos,  selected_building)
 		select_building(null)
 		Manager.timestep()
