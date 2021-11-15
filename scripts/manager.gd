@@ -16,6 +16,9 @@ onready var building_grid_node := main_scene.get_node("BuildingGrid")
 onready var particle_storage := main_scene.get_node("ParticleStorage")
 onready var ui := main_scene.get_node("CanvasLayer")
 
+func _ready():
+	randomize() # set new seed (based on time)
+
 func create_building(cell_pos: Vector2, building_name: String):
 	var building_node = building_prefab.instance()
 	building_node.set_script(building_data[building_name].script_file) # sets generate functionality

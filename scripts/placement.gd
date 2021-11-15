@@ -8,13 +8,6 @@ onready var offset: Vector2 = BuildingWorld.SIZE_VECTOR / 2
 
 var selected_building
 
-func _ready() -> void:
-	randomize() # set new seed (based on time)
-	
-	# create starting buildings
-	#for i in range(2):
-		#Manager.create_building(Utils.random_in_grid(Manager.building_grid), "Simple Generator")
-
 func _input(event: InputEvent) -> void:
 	var offseted_mouse_pos = get_local_mouse_position() + offset
 	var mouse_cell_pos = (offseted_mouse_pos / BuildingWorld.SIZE).floor()
@@ -35,13 +28,19 @@ func select_building(building_name):
 	if building_name == null:
 		# hide ghost building
 		building_ghost.hide()
+		Manager.ui.back_button.hide()
 	else:
 		# show ghost building
 		building_ghost.texture = Manager.building_data[selected_building].texture
 		building_ghost.fit_to_cell_size()
 		building_ghost.show()
 		Manager.ui.building_select_panel.hide()
+		Manager.ui.back_button.show()
 
 func _on_SkipButton_pressed() -> void:
 	Manager.ui.building_select_panel.hide()
 	Manager.timestep()
+
+func _on_BackButton_pressed():
+	select_building(null)
+	Manager.ui.building_select_panel.popup()

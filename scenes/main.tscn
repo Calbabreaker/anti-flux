@@ -93,14 +93,12 @@ __meta__ = {
 }
 
 [node name="BuildingSelectPanel" type="PopupPanel" parent="CanvasLayer"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -492.0
-margin_top = -223.0
-margin_right = 492.0
-margin_bottom = 279.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 22.0
+margin_top = 78.0
+margin_right = -21.0
+margin_bottom = -15.0
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -109,21 +107,19 @@ __meta__ = {
 [node name="Wrapper" type="Control" parent="CanvasLayer/BuildingSelectPanel"]
 margin_left = 4.0
 margin_top = 4.0
-margin_right = 980.0
-margin_bottom = 498.0
+margin_right = 977.0
+margin_bottom = 503.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Container" type="HBoxContainer" parent="CanvasLayer/BuildingSelectPanel/Wrapper"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -473.0
-margin_top = -167.0
-margin_right = 475.0
-margin_bottom = 234.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 13.0
+margin_top = 82.0
+margin_right = -8.0
+margin_bottom = -12.0
 custom_constants/separation = 20
 __meta__ = {
 "_edit_group_": true,
@@ -133,35 +129,54 @@ __meta__ = {
 [node name="BuildingChoose" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 302.0
-margin_bottom = 401.0
+margin_right = 304.0
+margin_bottom = 405.0
 
 [node name="BuildingChoose4" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 322.0
-margin_right = 625.0
-margin_bottom = 401.0
+margin_left = 324.0
+margin_right = 628.0
+margin_bottom = 405.0
 
 [node name="BuildingChoose5" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 645.0
-margin_right = 948.0
-margin_bottom = 401.0
+margin_left = 648.0
+margin_right = 952.0
+margin_bottom = 405.0
 
 [node name="SkipButton" type="Button" parent="CanvasLayer/BuildingSelectPanel/Wrapper"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -58.0
-margin_top = 9.0
+margin_top = 10.0
 margin_right = 66.0
-margin_bottom = 65.0
+margin_bottom = 66.0
 custom_fonts/font = ExtResource( 6 )
 text = "Skip"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BackButton" type="Button" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -45.5
+margin_top = -75.0
+margin_right = 45.5
+margin_bottom = -19.0
+custom_fonts/font = ExtResource( 6 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StageAdvancePanel" type="PopupPanel" parent="CanvasLayer"]
+margin_right = 8.0
+margin_bottom = 8.0
 
 [node name="BuildingGrid" type="Node2D" parent="."]
 position = Vector2( 32, 32 )
@@ -177,3 +192,4 @@ script = ExtResource( 9 )
 [node name="ParticleStorage" type="Node2D" parent="."]
 
 [connection signal="pressed" from="CanvasLayer/BuildingSelectPanel/Wrapper/SkipButton" to="BuildingGrid" method="_on_SkipButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/BackButton" to="BuildingGrid" method="_on_BackButton_pressed"]
