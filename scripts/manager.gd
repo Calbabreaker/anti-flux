@@ -34,6 +34,6 @@ func timestep():
 func building_timestep(building_node, x: int, y: int):
 	building_node.timestep(x, y)
 	
-func add_antimatter(count: int = 1):
+func add_antimatter(count: int ):
 	Manager.antimatter += count
 	ui.antimatter_label.text = str(Manager.antimatter)

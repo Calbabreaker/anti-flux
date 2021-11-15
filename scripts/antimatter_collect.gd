@@ -3,11 +3,12 @@ extends Sprite
 var target_pos = Vector2(32, 32)
 var speed := 750
 var amount := 1
-var time_to_start := randf()
+var time_to_start := 0.5
 
 var time := 0.0
 
-func _ready() -> void:
+func set_amount(antimatter: int):
+	amount = antimatter
 	modulate.s = log(float(amount)) / 10
 
 func _process(delta: float) -> void:
