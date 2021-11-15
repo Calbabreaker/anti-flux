@@ -7,8 +7,7 @@ const SIZE_VECTOR := Vector2(SIZE, SIZE)
 const antimatter_collect_prefab = preload("res://scenes/antimatter_collect.tscn")
 onready var particle_system: Particles2D = get_node_or_null("Particles2D")
 
-var acumulattor_start := 1
-var acumulattor: int # gets set to acumulattor_start every timestep to be used for acumulation like enhancing
+var antimatter_collect: Node
 
 func _enter_tree() -> void:
 	fit_to_cell_size()
@@ -18,25 +17,26 @@ func fit_to_cell_size():
 	scale = SIZE_VECTOR / size
 
 func timestep(x: int, y: int) -> void:
-	acumulattor = acumulattor_start
-	on_timestep(x, y)
+	antimatter_collect = null
+	var amount = on_timestep(x, y)
+	if amount != 0:
+		antimatter_collect = antimatter_collect_prefab.instance()
+		antimatter_collect.set_amount(amount)
+		Manager.particle_storage.add_child(antimatter_collect)
+		antimatter_collect.global_position = global_position
+		particle_system.restart()
 	
 # override this function to do something on timestep
-func on_timestep(x: int, y: int) -> void:
-	pass
+# should return number of antimatter to generate (0 for none)
+func on_timestep(x: int, y: int) -> int:
+	return 0
 
-# calls a function with surrounding buildings 	
+# calls a function with surrounding buildings
 func loop_through_surrounding(callback: FuncRef, self_x: int, self_y: int) -> void:
-	for x in range(self_x - 1, self_x + 1):
-		for y in range(self_y - 1, self_y + 1):
-			if x != self_x and self_y != 0:
-				var building = Manager.building_grid[y][x]
+	for offset_x in range(-1, 2):
+		for offset_y in range(-1, 2):
+			if offset_x != 0 or offset_y != 0: # not itself
+				var cell_pos = Vector2(self_x + offset_x, self_y + offset_y)
+				var building = Utils.grid_get(Manager.building_grid, cell_pos)
 				if building != null:
 					callback.call_func(building)
-
-func generate_antimatter(amount: int) -> void:
-	var antimatter_collect = antimatter_collect_prefab.instance()
-	antimatter_collect.set_amount(amount)
-	Manager.antimatter_collects.add_child(antimatter_collect)
-	antimatter_collect.global_position = global_position
-	particle_system.restart()

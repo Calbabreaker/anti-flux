@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func timestep_advance():
 	building_select_panel.show()
+	building_select_panel
 	next_stage_label.text = "Next Stage: " + str(advance_stage_cost)
 		
 	if current_timestep == timesteps_in_stage:

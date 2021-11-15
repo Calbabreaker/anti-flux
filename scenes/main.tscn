@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/placement.gd" type="Script" id=1]
 [ext_resource path="res://assets/antimatter.svg" type="Texture" id=2]
 [ext_resource path="res://assets/OpenSans-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://scenes/building_select.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/building_select_panel.gd" type="Script" id=5]
+[ext_resource path="res://assets/font_main.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scripts/timestep_advance.gd" type="Script" id=7]
 [ext_resource path="res://assets/simple_generator.svg" type="Texture" id=8]
 [ext_resource path="res://scripts/building_world.gd" type="Script" id=9]
@@ -110,6 +111,9 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 980.0
 margin_bottom = 498.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Container" type="HBoxContainer" parent="CanvasLayer/BuildingSelectPanel/Wrapper"]
 anchor_left = 0.5
@@ -117,7 +121,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -473.0
-margin_top = -226.0
+margin_top = -167.0
 margin_right = 475.0
 margin_bottom = 234.0
 custom_constants/separation = 20
@@ -130,21 +134,34 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 302.0
-margin_bottom = 460.0
+margin_bottom = 401.0
 
 [node name="BuildingChoose4" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 322.0
 margin_right = 625.0
-margin_bottom = 460.0
+margin_bottom = 401.0
 
 [node name="BuildingChoose5" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 645.0
 margin_right = 948.0
-margin_bottom = 460.0
+margin_bottom = 401.0
+
+[node name="SkipButton" type="Button" parent="CanvasLayer/BuildingSelectPanel/Wrapper"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -58.0
+margin_top = 9.0
+margin_right = 66.0
+margin_bottom = 65.0
+custom_fonts/font = ExtResource( 6 )
+text = "Skip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="BuildingGrid" type="Node2D" parent="."]
 position = Vector2( 32, 32 )
@@ -157,4 +174,6 @@ z_index = 1
 texture = ExtResource( 8 )
 script = ExtResource( 9 )
 
-[node name="AntimatterCollects" type="Node2D" parent="."]
+[node name="ParticleStorage" type="Node2D" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/BuildingSelectPanel/Wrapper/SkipButton" to="BuildingGrid" method="_on_SkipButton_pressed"]

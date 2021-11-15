@@ -7,19 +7,19 @@ var building_data := {
 
 var building_names := building_data.keys()
 
-var building_grid := Utils.grid_create(10, 20)
+var building_grid := Utils.grid_create(4, 3)
 var antimatter := 0
 
 onready var building_prefab := preload("res://scenes/building.tscn")
 onready var main_scene := $"/root/Main"
 onready var building_grid_node := main_scene.get_node("BuildingGrid")
-onready var antimatter_collects := main_scene.get_node("AntimatterCollects")
+onready var particle_storage := main_scene.get_node("ParticleStorage")
 onready var ui := main_scene.get_node("CanvasLayer")
 
 func create_building(cell_pos: Vector2, building_name: String):
 	var building_node = building_prefab.instance()
 	building_node.set_script(building_data[building_name].script_file) # sets generate functionality
-	building_node.texture = building_data[building_name].texture # sets generate functionality
+	building_node.texture = building_data[building_name].texture
 	
 	building_grid_node.add_child(building_node)
 	building_node.position = cell_pos * BuildingWorld.SIZE
@@ -30,6 +30,9 @@ func can_place_building(cell_pos: Vector2) -> bool:
 
 func timestep():
 	Utils.grid_loop_through(building_grid, funcref(self, "building_timestep"))
+	# if no antimatter has been generated
+	if particle_storage.get_child_count() == 0:
+		ui.timestep_advance()
 
 func building_timestep(building_node, x: int, y: int):
 	building_node.timestep(x, y)
