@@ -57,6 +57,8 @@ Pass through all the stages without being unable to pay for the factory.
 
 > This part will need a lot of balancing
 
-- **Simple Generator:** 1 antimatter
-- **Enhancer:** Surrounding buildings double their production
-- 
+- **Simple Generator:** Generates 1 antimatter
+- **Enhancer:** Surrounding buildings have their production mutliplied by 1.5 times
+- **Unstable Generator**: Generates 5 antimatter. 20% chance to destroy itself and surrounding buildings.
+- **Storage**: Gives 20 antimatter when destroyed.
+- **Vacuum**: Generates 1 antimmater for every sucked up building. Surrounding buildings are sucked into it.

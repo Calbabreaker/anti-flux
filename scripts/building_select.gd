@@ -3,11 +3,13 @@ extends Button
 var current_building_name: String
 onready var description_label := $"Description" 
 onready var title_label := $"Title" 
+onready var texture_rect := $"TextureRect"
 
 func set_building(name: String):
 	var building = Manager.building_data[name]
 	description_label.text = building.description
 	title_label.text = name
+	texture_rect.texture = Manager.building_data[name].texture
 	current_building_name = name
 
 func set_random_building():

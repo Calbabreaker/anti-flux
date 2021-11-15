@@ -10,16 +10,17 @@ var cell_size = Vector2.ONE
 onready var particle_system: Particles2D = $"Particles2D"
 
 func _enter_tree() -> void:
-	# make sprite fit to the building size
+	fit_to_cell_size()
+	
+func fit_to_cell_size():
 	var size = texture.get_size()
 	scale = (SIZE_VECTOR / size) * cell_size
 
-func timestep() -> void:
-	particle_system.restart()
-	on_timestep()
+func timestep(x: int, y: int) -> void:
+	on_timestep(x, y)
 	
 # override this function to do something on timestep
-func on_timestep() -> void:
+func on_timestep(x: int, y: int) -> void:
 	pass
 
 func generate_antimatter(amount: int = 1) -> void:
@@ -27,3 +28,4 @@ func generate_antimatter(amount: int = 1) -> void:
 	antimatter_collect.amount = amount
 	Manager.antimatter_collects.add_child(antimatter_collect)
 	antimatter_collect.global_position = global_position
+	particle_system.restart()

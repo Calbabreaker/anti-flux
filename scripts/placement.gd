@@ -36,5 +36,6 @@ func select_building(building_name):
 	else:
 		# show ghost building
 		building_ghost.texture = Manager.building_data[selected_building].texture
+		building_ghost.fit_to_cell_size()
 		building_ghost.show()
 		Manager.ui.building_select_panel.hide()

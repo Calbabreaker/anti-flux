@@ -1,7 +1,4 @@
 extends BuildingWorld
 
-var times = 2
-
-func on_timestep():
-	generate_antimatter(times)
-	times *= 2
+func on_timestep(_x: int, _y: int) -> void:
+	generate_antimatter(1)

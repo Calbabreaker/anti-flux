@@ -1,7 +1,8 @@
 extends Node
 
 var building_data := {
-	"Simple Generator": BuildingData.new("Generates 1 antimatter and stuff so that's how we like it and if we like it then that's how we like it", "simple_generator")
+	"Simple Generator": BuildingData.new("Generates 1 antimatter", "simple_generator"),
+	"Enhancer": BuildingData.new("Surrounding buildings have their production mutliplied by 1.5 times", "enhancer")
 }
 
 var building_names := building_data.keys()
@@ -31,7 +32,7 @@ func timestep():
 	Utils.grid_loop_through(building_grid, funcref(self, "building_timestep"))
 
 func building_timestep(building_node, x: int, y: int):
-	building_node.timestep()
+	building_node.timestep(x, y)
 	
 func add_antimatter(count: int = 1):
 	Manager.antimatter += count
