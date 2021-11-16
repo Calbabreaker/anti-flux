@@ -1,12 +1,16 @@
 extends Node2D
 
 const invalid_color := Color(0.8, 0, 0)
+const building_prefab := preload("res://scenes/building.tscn")
 
-var building_prefab := preload("res://scenes/building.tscn")
+onready var back_button := $"../CanvasLayer/BackButton"
 onready var building_ghost := $"BuildingGhost"
 onready var offset: Vector2 = BuildingWorld.SIZE_VECTOR / 2
 
 var selected_building
+
+func _ready() -> void:
+	Manager.building_select_panel.show()
 
 func _input(event: InputEvent) -> void:
 	var offseted_mouse_pos = get_local_mouse_position() + offset
@@ -28,19 +32,19 @@ func select_building(building_name):
 	if building_name == null:
 		# hide ghost building
 		building_ghost.hide()
-		Manager.ui.back_button.hide()
+		back_button.hide()
 	else:
 		# show ghost building
 		building_ghost.texture = Manager.building_data[selected_building].texture
 		building_ghost.fit_to_cell_size()
 		building_ghost.show()
-		Manager.ui.building_select_panel.hide()
-		Manager.ui.back_button.show()
+		Manager.building_select_panel.hide()
+		back_button.show()
 
 func _on_SkipButton_pressed() -> void:
-	Manager.ui.building_select_panel.hide()
+	Manager.building_select_panel.hide()
 	Manager.timestep()
 
 func _on_BackButton_pressed():
 	select_building(null)
-	Manager.ui.building_select_panel.popup()
+	Manager.building_select_panel.popup()

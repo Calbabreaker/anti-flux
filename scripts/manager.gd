@@ -9,14 +9,20 @@ var building_names := building_data.keys()
 
 var building_grid := Utils.grid_create(4, 3)
 var antimatter := 0
+var current_stage := 1
+var timesteps_left := current_stage * 5
+var advance_stage_cost := 25
 
 onready var building_prefab := preload("res://scenes/building.tscn")
 onready var main_scene := $"/root/Main"
 onready var building_grid_node := main_scene.get_node("BuildingGrid")
 onready var particle_storage := main_scene.get_node("ParticleStorage")
-onready var ui := main_scene.get_node("CanvasLayer")
+onready var canvas_layer := main_scene.get_node("CanvasLayer")
 
-func _ready():
+onready var building_select_panel := canvas_layer.get_node("BuildingSelectPanel")
+onready var antimatter_label := canvas_layer.get_node("AntimatterLabel")
+
+func _setup():
 	randomize() # set new seed (based on time)
 
 func create_building(cell_pos: Vector2, building_name: String):
@@ -35,11 +41,24 @@ func timestep():
 	Utils.grid_loop_through(building_grid, funcref(self, "building_timestep"))
 	# if no antimatter has been generated
 	if particle_storage.get_child_count() == 0:
-		ui.timestep_advance()
-
+		timestep_advance()
+		
 func building_timestep(building_node, x: int, y: int):
 	building_node.timestep(x, y)
 	
+func timestep_advance():
+	timesteps_left -= 1
+	
+	if timesteps_left == 0:
+		if antimatter < advance_stage_cost:
+			print("LOSE")
+			return
+		
+		timesteps_left = current_stage * 5
+		advance_stage_cost *= 5
+	else:
+		building_select_panel.show()
+	
 func add_antimatter(count: int ):
 	Manager.antimatter += count
-	ui.antimatter_label.text = str(Manager.antimatter)
+	antimatter_label.text = str(Manager.antimatter)

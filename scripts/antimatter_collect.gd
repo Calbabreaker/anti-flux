@@ -27,4 +27,4 @@ func collect() -> void:
 	
 	# last antimatter collect so continue timestep
 	if get_parent().get_child_count() == 1:
-		Manager.ui.timestep_advance()
+		Manager.timestep_advance()
