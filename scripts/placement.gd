@@ -1,16 +1,20 @@
 extends Node2D
 
-const invalid_color := Color(0.8, 0, 0)
 const building_prefab := preload("res://scenes/building.tscn")
+const invalid_color := Color(0.8, 0, 0)
 
 onready var back_button := $"../CanvasLayer/BackButton"
 onready var building_ghost := $"BuildingGhost"
+onready var place_guides := $"PlaceGuides"
 onready var offset: Vector2 = BuildingWorld.SIZE_VECTOR / 2
 
 var selected_building
 
 func _ready() -> void:
 	Manager.building_select_panel.show()
+	var buidling_grid_dim := Vector2(len(Manager.building_grid[0]), len(Manager.building_grid))
+	place_guides.rect_size = buidling_grid_dim * BuildingWorld.SIZE_VECTOR
+	place_guides.rect_position = Vector2(-32, -32)
 
 func _input(event: InputEvent) -> void:
 	var offseted_mouse_pos = get_local_mouse_position() + offset
@@ -26,7 +30,7 @@ func _input(event: InputEvent) -> void:
 		Manager.create_building(mouse_cell_pos,  selected_building)
 		select_building(null)
 		Manager.timestep()
-
+		
 func select_building(building_name):
 	selected_building = building_name
 	if building_name == null:

@@ -48,6 +48,7 @@ window/stretch/aspect="expand"
 [global]
 
 terminal=false
+Window=false
 
 [input]
 

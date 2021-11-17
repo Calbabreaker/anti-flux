@@ -1,6 +1,6 @@
 extends Sprite
 
-var target_pos = Vector2(32, 32)
+var target_pos = Vector2(64, 64)
 var speed := 750
 var time_to_start := 0.5
 var amount: int
@@ -23,8 +23,9 @@ func _process(delta: float) -> void:
 
 func collect() -> void:
 	Manager.add_antimatter(amount)
+	Manager.particle_storage.remove_child(self)
 	queue_free()
 	
 	# last antimatter collect so continue timestep
-	if get_parent().get_child_count() == 1:
+	if Manager.particle_storage.get_child_count() == 0:
 		Manager.timestep_advance()
