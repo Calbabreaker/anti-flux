@@ -1,14 +1,12 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scripts/placement.gd" type="Script" id=1]
-[ext_resource path="res://scripts/stage_advance_panel.gd" type="Script" id=2]
-[ext_resource path="res://assets/font_description.tres" type="DynamicFont" id=3]
-[ext_resource path="res://scenes/building_select.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scripts/building_select_panel.gd" type="Script" id=5]
+[ext_resource path="res://scenes/building_select_panel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/stage_advance_panel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/font_main.tres" type="DynamicFont" id=6]
+[ext_resource path="res://scripts/main.gd" type="Script" id=7]
 [ext_resource path="res://assets/simple_generator.svg" type="Texture" id=8]
 [ext_resource path="res://scripts/building_world.gd" type="Script" id=9]
-[ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=10]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Blink"
@@ -29,6 +27,7 @@ tracks/0/keys = {
 
 [node name="Main" type="Node2D"]
 scale = Vector2( 0.8, 0.8 )
+script = ExtResource( 7 )
 __meta__ = {
 "_edit_vertical_guides_": [ -142.0 ]
 }
@@ -67,168 +66,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BuildingSelectPanel" type="Panel" parent="CanvasLayer"]
-process_priority = 1
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 21.0
-margin_top = 84.0
-margin_right = -18.0
-margin_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource( 5 )
+[node name="BuildingSelectPanel" parent="CanvasLayer" instance=ExtResource( 2 )]
 
-[node name="Wrapper" type="Control" parent="CanvasLayer/BuildingSelectPanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Container" type="HBoxContainer" parent="CanvasLayer/BuildingSelectPanel/Wrapper"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 71.0
-margin_right = -13.0
-margin_bottom = -13.0
-custom_constants/separation = 20
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="BuildingChoose" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 305.0
-margin_bottom = 412.0
-
-[node name="BuildingChoose4" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 325.0
-margin_right = 630.0
-margin_bottom = 412.0
-
-[node name="BuildingChoose5" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 650.0
-margin_right = 956.0
-margin_bottom = 412.0
-
-[node name="SkipButton" type="Button" parent="CanvasLayer/BuildingSelectPanel/Wrapper"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -46.5
-margin_top = 10.0
-margin_right = 46.5
-margin_bottom = 56.0
-custom_fonts/font = ExtResource( 10 )
-text = "Skip"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StageLabel" type="Label" parent="CanvasLayer/BuildingSelectPanel/Wrapper"]
-margin_left = 15.0813
-margin_top = 11.8921
-margin_right = 243.081
-margin_bottom = 50.8921
-custom_fonts/font = ExtResource( 10 )
-text = "Stage: <int>/<int>"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="StageAdvancePanel" type="Panel" parent="CanvasLayer"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -193.0
-margin_top = -122.5
-margin_right = 193.0
-margin_bottom = 122.5
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TitleLabel" type="Label" parent="CanvasLayer/StageAdvancePanel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -189.0
-margin_top = 13.0
-margin_right = 189.0
-margin_bottom = 250.0
-custom_fonts/font = ExtResource( 6 )
-text = "Pay for factory"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RestartButton" type="Button" parent="CanvasLayer/StageAdvancePanel"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -78.0
-margin_top = -77.0
-margin_right = 77.0
-margin_bottom = -19.0
-custom_fonts/font = ExtResource( 6 )
-text = "Restart"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DescriptionLabel" type="Label" parent="CanvasLayer/StageAdvancePanel"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -171.0
-margin_top = 84.0
-margin_right = 170.0
-margin_bottom = 133.0
-custom_fonts/font = ExtResource( 3 )
-text = "Payment for the factory is due. and that's how we like it yes"
-align = 1
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PayButton" type="Button" parent="CanvasLayer/StageAdvancePanel"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -119.5
-margin_top = -77.0
-margin_right = 119.5
-margin_bottom = -19.0
-custom_fonts/font = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/StageAdvancePanel/PayButton"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 1
-custom_fonts/normal_font = ExtResource( 6 )
-bbcode_enabled = true
-bbcode_text = "[center]Pay [font=res://assets/bbcode_font.tres][img]res://assets/antimatter.svg[/img][/font] <int>[/center]"
-text = "Pay  <int>"
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
+[node name="StageAdvancePanel" parent="CanvasLayer" instance=ExtResource( 3 )]
 
 [node name="BackButton" type="Button" parent="CanvasLayer"]
 visible = false
@@ -255,6 +95,7 @@ __meta__ = {
 [node name="BuildingGrid" type="Node2D" parent="."]
 position = Vector2( 637.712, 294.329 )
 script = ExtResource( 1 )
+back_button_path = NodePath("../CanvasLayer/BackButton")
 
 [node name="BuildingGhost" type="Sprite" parent="BuildingGrid"]
 visible = false
@@ -289,7 +130,4 @@ current = true
 
 [node name="ParticleStorage" type="Node2D" parent="."]
 
-[connection signal="pressed" from="CanvasLayer/BuildingSelectPanel/Wrapper/SkipButton" to="BuildingGrid" method="_on_SkipButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/StageAdvancePanel/RestartButton" to="CanvasLayer/StageAdvancePanel" method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/StageAdvancePanel/PayButton" to="CanvasLayer/StageAdvancePanel" method="_on_PayButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/BackButton" to="BuildingGrid" method="_on_BackButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_BackButton_pressed"]

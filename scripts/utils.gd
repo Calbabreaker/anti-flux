@@ -1,10 +1,10 @@
 class_name Utils
 
-static func grid_create(rows: int, cols: int) -> Array:
+static func grid_create(size: Vector2) -> Array:
 	var grid = []
-	for _i in range(rows):
+	for _i in range(size.y):
 		var array = []
-		array.resize(cols)
+		array.resize(size.x)
 		grid.append(array)
 	return grid
 

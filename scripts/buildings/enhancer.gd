@@ -10,6 +10,5 @@ func enhance(building: BuildingWorld):
 	if building.antimatter_collect != null: # antimatter was generated:
 		var particle = particle_prefab.instance()
 		particle.target_collect = building.antimatter_collect
-		Manager.particle_storage.add_child(particle)
-		particle.rect_position = get_global_transform_with_canvas().origin
+		Global.emit_signal("add_particle", particle, self)
 	

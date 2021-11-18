@@ -5,8 +5,8 @@ onready var restart_button = $"RestartButton"
 onready var title_label = $"TitleLabel"
 onready var description_label = $"DescriptionLabel"
 
-func update_show() -> void:
-	if Manager.antimatter < Manager.advance_stage_cost:
+func update_show(antimatter: int, advance_stage_cost: int) -> void:
+	if antimatter < advance_stage_cost:
 		# lose
 		restart_button.show()
 		pay_label.get_parent().hide()
@@ -16,7 +16,7 @@ func update_show() -> void:
 		# pass
 		restart_button.hide()
 		pay_label.get_parent().show()
-		pay_label.bbcode_text = "[center]Pay {} {}[/center]".format([Manager.antimatter_icon, Manager.advance_stage_cost], "{}")
+		pay_label.bbcode_text = "[center]Pay {} {}[/center]".format([Global.antimatter_icon_bbcode, advance_stage_cost], "{}")
 		title_label.text = "Pay for factory!"
 		description_label.text = "The payment for the factory is due."
 	
@@ -24,7 +24,7 @@ func update_show() -> void:
 
 func _on_PayButton_pressed() -> void:
 	hide()
-	Manager.stage_advance()
+	Global.emit_signal("stage_advance")
 
 func _on_RestartButton_pressed() -> void:
 	get_tree().change_scene("res://scenes/main.tscn")

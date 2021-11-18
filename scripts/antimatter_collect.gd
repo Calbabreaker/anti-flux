@@ -3,10 +3,13 @@ extends Control
 const speed := 750
 const time_to_start := 0.5
 
-onready var target_pos = Manager.antimatter_label.rect_position + $"TextureRect".rect_size / 2
+var target_pos: Vector2
 var amount: int
 
 var time := 0.0
+
+func set_antimatter_label_pos(position: Vector2):
+	target_pos = position + $"TextureRect".rect_size / 2
 
 func set_amount(antimatter: int) -> void:
 	amount = antimatter
@@ -18,15 +21,9 @@ func _process(delta: float) -> void:
 	if time > time_to_start:
 		rect_position = rect_position.move_toward(target_pos, delta * speed)
 		if rect_position == target_pos:
-			collect()
+			# delete self
+			get_parent().remove_child(self)
+			queue_free()
+			Global.emit_signal("collect_antimatter", amount)
 	else:
 		time += delta
-
-func collect() -> void:
-	Manager.add_antimatter(amount)
-	Manager.particle_storage.remove_child(self)
-	queue_free()
-	
-	# last antimatter collect so continue timestep
-	if Manager.particle_storage.get_child_count() == 0:
-		Manager.timestep_advance()

@@ -38,7 +38,7 @@ config/icon="res://assets/icon.png"
 
 [autoload]
 
-Manager="*res://scripts/manager.gd"
+Global="*res://scripts/global.gd"
 
 [display]
 
