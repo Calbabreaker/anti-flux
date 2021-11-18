@@ -11,5 +11,5 @@ func enhance(building: BuildingWorld):
 		var particle = particle_prefab.instance()
 		particle.target_collect = building.antimatter_collect
 		Manager.particle_storage.add_child(particle)
-		particle.global_position = global_position
+		particle.rect_position = get_global_transform_with_canvas().origin
 	

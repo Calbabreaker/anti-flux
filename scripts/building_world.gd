@@ -23,7 +23,7 @@ func timestep(x: int, y: int) -> void:
 		antimatter_collect = antimatter_collect_prefab.instance()
 		antimatter_collect.set_amount(amount)
 		Manager.particle_storage.add_child(antimatter_collect)
-		antimatter_collect.global_position = global_position
+		antimatter_collect.rect_position = get_global_transform_with_canvas().origin
 		particle_system.restart()
 	
 # override this function to do something on timestep

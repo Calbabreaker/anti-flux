@@ -25,3 +25,6 @@ func update_show() -> void:
 func _on_PayButton_pressed() -> void:
 	hide()
 	Manager.stage_advance()
+
+func _on_RestartButton_pressed() -> void:
+	get_tree().change_scene("res://scenes/main.tscn")

@@ -2,6 +2,7 @@ extends Node
 
 # uses bbcode
 const antimatter_icon = "[font=res://assets/bbcode_font.tres][img]res://assets/antimatter.svg[/img][/font]"
+const building_prefab := preload("res://scenes/building.tscn")
 
 var building_data := {
 	"Simple Generator": BuildingData.new("Generates 1 antimatter", "simple_generator"),
@@ -17,16 +18,15 @@ var timesteps_left := current_stage * 5
 var advance_stage_cost := 20
 var end_stage := 8
 
-onready var building_prefab := preload("res://scenes/building.tscn")
 onready var main_scene := $"/root/Main"
 onready var building_grid_node := main_scene.get_node("BuildingGrid")
-onready var particle_storage := main_scene.get_node("ParticleStorage")
-
 onready var canvas_layer := main_scene.get_node("CanvasLayer")
+
 onready var building_select_panel := canvas_layer.get_node("BuildingSelectPanel")
 onready var stage_advance_panel := canvas_layer.get_node("StageAdvancePanel")
 onready var antimatter_label := canvas_layer.get_node("AntimatterLabel")
 onready var timestep_cost_label := canvas_layer.get_node("TimestepCostLabel")
+onready var particle_storage := canvas_layer.get_node("ParticleStorage")
 
 func _ready():
 	randomize() # set new seed (based on time)
