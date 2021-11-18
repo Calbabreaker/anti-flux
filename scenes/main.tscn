@@ -52,9 +52,9 @@ __meta__ = {
 [node name="TimestepCostLabel" type="RichTextLabel" parent="CanvasLayer"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -702.0
+margin_left = -1019.0
 margin_top = 14.0
-margin_right = -11.9999
+margin_right = -12.0
 margin_bottom = 84.0
 custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
@@ -64,24 +64,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BuildingSelectPanel" type="PopupPanel" parent="CanvasLayer"]
+[node name="BuildingSelectPanel" type="Panel" parent="CanvasLayer"]
 process_priority = 1
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 21.0
 margin_top = 84.0
 margin_right = -18.0
 margin_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Wrapper" type="Control" parent="CanvasLayer/BuildingSelectPanel"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 981.0
-margin_bottom = 492.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -89,10 +87,10 @@ __meta__ = {
 [node name="Container" type="HBoxContainer" parent="CanvasLayer/BuildingSelectPanel/Wrapper"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 13.0
+margin_left = 16.0
 margin_top = 71.0
-margin_right = -8.0
-margin_bottom = -12.0
+margin_right = -13.0
+margin_bottom = -13.0
 custom_constants/separation = 20
 __meta__ = {
 "_edit_group_": true,
@@ -103,21 +101,21 @@ __meta__ = {
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 305.0
-margin_bottom = 405.0
+margin_bottom = 412.0
 
 [node name="BuildingChoose4" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 325.0
 margin_right = 630.0
-margin_bottom = 405.0
+margin_bottom = 412.0
 
 [node name="BuildingChoose5" parent="CanvasLayer/BuildingSelectPanel/Wrapper/Container" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 650.0
 margin_right = 956.0
-margin_bottom = 405.0
+margin_bottom = 412.0
 
 [node name="SkipButton" type="Button" parent="CanvasLayer/BuildingSelectPanel/Wrapper"]
 anchor_left = 0.5
@@ -143,7 +141,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StageAdvancePanel" type="PopupPanel" parent="CanvasLayer"]
+[node name="StageAdvancePanel" type="Panel" parent="CanvasLayer"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -157,24 +156,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Wrapper" type="Control" parent="CanvasLayer/StageAdvancePanel"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 4.0
-margin_right = -4.0
-margin_bottom = -4.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TitleLabel" type="Label" parent="CanvasLayer/StageAdvancePanel/Wrapper"]
+[node name="TitleLabel" type="Label" parent="CanvasLayer/StageAdvancePanel"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -189.0
-margin_top = 9.0
+margin_top = 13.0
 margin_right = 189.0
-margin_bottom = 246.0
+margin_bottom = 250.0
 custom_fonts/font = ExtResource( 6 )
 text = "Pay for factory"
 align = 1
@@ -182,21 +170,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PayButton" type="Button" parent="CanvasLayer/StageAdvancePanel/Wrapper"]
+[node name="RestartButton" type="Button" parent="CanvasLayer/StageAdvancePanel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -78.0
+margin_top = -77.0
+margin_right = 77.0
+margin_bottom = -19.0
+custom_fonts/font = ExtResource( 6 )
+text = "Restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DescriptionLabel" type="Label" parent="CanvasLayer/StageAdvancePanel"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -171.0
+margin_top = 84.0
+margin_right = 170.0
+margin_bottom = 133.0
+custom_fonts/font = ExtResource( 3 )
+text = "Payment for the factory is due. and that's how we like it yes"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PayButton" type="Button" parent="CanvasLayer/StageAdvancePanel"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -119.5
-margin_top = -73.0
+margin_top = -77.0
 margin_right = 119.5
-margin_bottom = -15.0
+margin_bottom = -19.0
 custom_fonts/font = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/StageAdvancePanel/Wrapper/PayButton"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/StageAdvancePanel/PayButton"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 1
@@ -206,36 +224,6 @@ bbcode_text = "[center]Pay [font=res://assets/bbcode_font.tres][img]res://assets
 text = "Pay  <int>"
 __meta__ = {
 "_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="RestartButton" type="Button" parent="CanvasLayer/StageAdvancePanel/Wrapper"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -78.0
-margin_top = -73.0
-margin_right = 77.0
-margin_bottom = -15.0
-custom_fonts/font = ExtResource( 6 )
-text = "Restart"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DescriptionLabel" type="Label" parent="CanvasLayer/StageAdvancePanel/Wrapper"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -171.0
-margin_top = 80.0
-margin_right = 170.0
-margin_bottom = 103.0
-custom_fonts/font = ExtResource( 3 )
-text = "Payment for the factory is due. and that's how we like it yes"
-align = 1
-autowrap = true
-__meta__ = {
 "_edit_use_anchors_": false
 }
 
@@ -257,6 +245,7 @@ __meta__ = {
 
 [node name="BuildingGrid" type="Node2D" parent="."]
 position = Vector2( 637.712, 294.329 )
+scale = Vector2( 1, 1 )
 script = ExtResource( 1 )
 
 [node name="BuildingGhost" type="Sprite" parent="BuildingGrid"]
@@ -286,8 +275,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Camera2D" type="Camera2D" parent="BuildingGrid"]
+position = Vector2( 1.66858, 83.4275 )
+current = true
+
 [node name="ParticleStorage" type="Node2D" parent="."]
+scale = Vector2( 1, 1 )
 
 [connection signal="pressed" from="CanvasLayer/BuildingSelectPanel/Wrapper/SkipButton" to="BuildingGrid" method="_on_SkipButton_pressed"]
-[connection signal="pressed" from="CanvasLayer/StageAdvancePanel/Wrapper/PayButton" to="CanvasLayer/StageAdvancePanel" method="_on_PayButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/StageAdvancePanel/PayButton" to="CanvasLayer/StageAdvancePanel" method="_on_PayButton_pressed"]
 [connection signal="pressed" from="CanvasLayer/BackButton" to="BuildingGrid" method="_on_BackButton_pressed"]

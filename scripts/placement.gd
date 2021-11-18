@@ -6,15 +6,17 @@ const invalid_color := Color(0.8, 0, 0)
 onready var back_button := $"../CanvasLayer/BackButton"
 onready var building_ghost := $"BuildingGhost"
 onready var place_guides := $"PlaceGuides"
+onready var camera := $"Camera2D"
 onready var offset: Vector2 = BuildingWorld.SIZE_VECTOR / 2
 
 var selected_building
 
 func _ready() -> void:
-	Manager.building_select_panel.show()
+	Manager.building_select_panel.update_show()
 	var buidling_grid_dim := Vector2(len(Manager.building_grid[0]), len(Manager.building_grid))
 	place_guides.rect_size = buidling_grid_dim * BuildingWorld.SIZE_VECTOR
 	place_guides.rect_position = Vector2(-32, -32)
+	camera.position = place_guides.rect_size / 2 - offset
 
 func _input(event: InputEvent) -> void:
 	var offseted_mouse_pos = get_local_mouse_position() + offset
@@ -51,4 +53,4 @@ func _on_SkipButton_pressed() -> void:
 
 func _on_BackButton_pressed():
 	select_building(null)
-	Manager.building_select_panel.popup()
+	Manager.building_select_panel.show()

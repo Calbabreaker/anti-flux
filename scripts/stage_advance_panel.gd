@@ -1,11 +1,11 @@
-extends PopupPanel
+extends Panel
 
-onready var pay_label = $"Wrapper/PayButton/RichTextLabel"
-onready var restart_button = $"Wrapper/RestartButton"
-onready var title_label = $"Wrapper/TitleLabel"
-onready var description_label = $"Wrapper/DescriptionLabel"
+onready var pay_label = $"PayButton/RichTextLabel"
+onready var restart_button = $"RestartButton"
+onready var title_label = $"TitleLabel"
+onready var description_label = $"DescriptionLabel"
 
-func show() -> void:
+func update_show() -> void:
 	if Manager.antimatter < Manager.advance_stage_cost:
 		# lose
 		restart_button.show()
@@ -20,7 +20,7 @@ func show() -> void:
 		title_label.text = "Pay for factory!"
 		description_label.text = "The payment for the factory is due."
 	
-	popup()
+	show()
 
 func _on_PayButton_pressed() -> void:
 	hide()

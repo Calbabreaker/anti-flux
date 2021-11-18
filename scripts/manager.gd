@@ -21,8 +21,8 @@ onready var building_prefab := preload("res://scenes/building.tscn")
 onready var main_scene := $"/root/Main"
 onready var building_grid_node := main_scene.get_node("BuildingGrid")
 onready var particle_storage := main_scene.get_node("ParticleStorage")
-onready var canvas_layer := main_scene.get_node("CanvasLayer")
 
+onready var canvas_layer := main_scene.get_node("CanvasLayer")
 onready var building_select_panel := canvas_layer.get_node("BuildingSelectPanel")
 onready var stage_advance_panel := canvas_layer.get_node("StageAdvancePanel")
 onready var antimatter_label := canvas_layer.get_node("AntimatterLabel")
@@ -62,9 +62,9 @@ func timestep_advance():
 		
 	timesteps_left -= 1
 	if timesteps_left == 0:
-		stage_advance_panel.show()
+		stage_advance_panel.update_show()
 	else:
-		building_select_panel.show()
+		building_select_panel.update_show()
 	
 	update_timestep_cost_label()
 		
@@ -83,4 +83,4 @@ func update_antimatter_label() -> void:
 	antimatter_label.bbcode_text = "{} {}".format([antimatter_icon, Manager.antimatter], "{}")
 	
 func update_timestep_cost_label() -> void:
-	timestep_cost_label.bbcode_text = "[right]{}{} due in {} timesteps[/right]".format([antimatter_icon, advance_stage_cost, timesteps_left], "{}")
+	timestep_cost_label.bbcode_text = "[right]{} {} due in {} timesteps[/right] ".format([antimatter_icon, advance_stage_cost, timesteps_left], "{}")

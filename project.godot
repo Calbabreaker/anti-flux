@@ -49,6 +49,7 @@ window/stretch/aspect="expand"
 
 terminal=false
 Window=false
+window=false
 
 [input]
 

@@ -1,6 +1,6 @@
 extends Sprite
 
-var target_pos = Vector2(64, 64)
+var target_pos = Manager.
 var speed := 750
 var time_to_start := 0.5
 var amount: int
@@ -9,7 +9,7 @@ var time := 0.0
 
 func set_amount(antimatter: int) -> void:
 	amount = antimatter
-	modulate.s = log(float(amount)) / 10
+	modulate.s = log(float(amount)) / 8
 	
 func _process(delta: float) -> void:
 	rotation += 10
