@@ -16,7 +16,7 @@ var end_stage := 8
 
 func _ready() -> void:
 	set_antimatter(0)
-	set_timesteps_left(current_stage * 5)
+	set_timesteps_left()
 	bsp_visible(true)
 	Global.connect_signal_funcs(self, ["timestep", "collect_antimatter", "stage_advance", "bsp_visible", "add_particle"])
 
@@ -34,7 +34,7 @@ func set_antimatter(value: int):
 	antimatter = value
 	antimatter_label.bbcode_text = "{} {}".format([Global.antimatter_icon_bbcode, antimatter], "{}")
 	
-func set_timesteps_left(value: int):
+func set_timesteps_left(value: int = current_stage * 2 + 3):
 	timesteps_left = value
 	timestep_cost_label.bbcode_text = "[right]{} {} due in {} timesteps[/right] ".format([Global.antimatter_icon_bbcode, advance_stage_cost, timesteps_left], "{}")
 
@@ -54,8 +54,8 @@ func collect_antimatter(amount: int) -> void:
 func stage_advance() -> void:
 	set_antimatter(antimatter - advance_stage_cost)
 	current_stage += 1
-	advance_stage_cost *= 5
-	set_timesteps_left(current_stage * 5)
+	advance_stage_cost *= 2
+	set_timesteps_left()
 	bsp_visible(true)
 
 func bsp_visible(is_visible) -> void:
@@ -72,4 +72,4 @@ func add_particle(particle, gen_node) -> void:
 
 func _on_BackButton_pressed():
 	building_grid.select_building(null)
-	bsp_visible(true)
+	building_select_panel.show()

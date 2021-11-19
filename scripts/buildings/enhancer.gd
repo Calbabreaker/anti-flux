@@ -10,5 +10,6 @@ func enhance(building: BuildingWorld):
 	if building.antimatter_collect != null: # antimatter was generated:
 		var particle = particle_prefab.instance()
 		particle.target_collect = building.antimatter_collect
+		particle.multiplier = 2.0
 		Global.emit_signal("add_particle", particle, self)
 	
