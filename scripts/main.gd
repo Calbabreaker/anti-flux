@@ -11,8 +11,8 @@ onready var back_button := $"CanvasLayer/BackButton"
 var antimatter: int
 var current_stage := 1
 var timesteps_left: int
-var advance_stage_cost := 20
-var end_stage := 8
+var advance_stage_cost := 25
+var end_stage := 1
 
 func _ready() -> void:
 	set_antimatter(0)
@@ -26,7 +26,7 @@ func timestep_advance():
 		
 	set_timesteps_left(timesteps_left - 1)
 	if timesteps_left == 0:
-		stage_advance_panel.update_show(antimatter, advance_stage_cost)
+		stage_advance_panel.update_show(antimatter, advance_stage_cost, current_stage == end_stage)
 	else:
 		bsp_visible(true)
 		
@@ -34,7 +34,7 @@ func set_antimatter(value: int):
 	antimatter = value
 	antimatter_label.bbcode_text = "{} {}".format([Global.antimatter_icon_bbcode, antimatter], "{}")
 	
-func set_timesteps_left(value: int = current_stage * 2 + 3):
+func set_timesteps_left(value: int = current_stage + 4):
 	timesteps_left = value
 	timestep_cost_label.bbcode_text = "[right]{} {} due in {} timesteps[/right] ".format([Global.antimatter_icon_bbcode, advance_stage_cost, timesteps_left], "{}")
 
@@ -54,7 +54,7 @@ func collect_antimatter(amount: int) -> void:
 func stage_advance() -> void:
 	set_antimatter(antimatter - advance_stage_cost)
 	current_stage += 1
-	advance_stage_cost *= 2
+	advance_stage_cost *= 3
 	set_timesteps_left()
 	bsp_visible(true)
 
