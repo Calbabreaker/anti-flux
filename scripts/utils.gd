@@ -25,7 +25,7 @@ static func grid_loop_through(grid: Array, callback: FuncRef):
 		if grid[y] != null:
 			for x in range(len(grid[y])):
 				if grid[y][x] != null:
-					callback.call_func(grid[y][x], x, y)
+					callback.call_func(grid[y][x], Vector2(x, y))
 
 # returns random position in grid
 static func grid_random(grid: Array) -> Vector2:

@@ -17,26 +17,29 @@ func fit_to_cell_size():
 	var size = texture.get_size()
 	scale = SIZE_VECTOR / size
 
-func timestep(x: int, y: int) -> void:
+func timestep(cell_pos: Vector2) -> void:
 	antimatter_collect = null
-	var amount = on_timestep(x, y)
-	if amount != 0:
-		antimatter_collect = antimatter_collect_prefab.instance()
-		antimatter_collect.set_amount(amount)
-		Global.emit_signal("add_particle", antimatter_collect, self)
-		particle_system.restart()
+	on_timestep(cell_pos)
+	
+func gen_antimatter(amount: int) -> void:
+	antimatter_collect = antimatter_collect_prefab.instance()
+	antimatter_collect.set_amount(amount)
+	Global.emit_signal("add_particle", antimatter_collect, self)
+	particle_system.restart()
 	
 # override this function to do something on timestep
-# should return number of antimatter to generate (0 for none)
-func on_timestep(_x: int, _y: int) -> int:
-	return 0
+func on_timestep(_cell_pos: Vector2) -> void:
+	pass
+	
+# override this function to do something last frame before it is destroyed
+func on_destroy() -> void:
+	pass
 
 # calls a function with surrounding buildings
-func loop_through_surrounding(callback: FuncRef, self_x: int, self_y: int) -> void:
+func loop_through_surrounding(callback: FuncRef, self_cell_pos: Vector2) -> void:
 	for offset_x in range(-1, 2):
 		for offset_y in range(-1, 2):
-			if offset_x != 0 or offset_y != 0: # not itself
-				var cell_pos = Vector2(self_x + offset_x, self_y + offset_y)
-				var building = Utils.grid_get(grid, cell_pos)
-				if building != null:
-					callback.call_func(building)
+			var cell_pos = Vector2(offset_x, offset_y) + self_cell_pos
+			var building = Utils.grid_get(grid, cell_pos)
+			if building != null:
+				callback.call_func(building, cell_pos)

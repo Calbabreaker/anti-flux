@@ -46,11 +46,10 @@ __meta__ = {
 }
 
 [node name="Description" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -147.5
+anchor_right = 1.0
+margin_left = 13.0
 margin_top = 249.0
-margin_right = 147.5
+margin_right = -13.0
 margin_bottom = 543.0
 mouse_filter = 1
 custom_fonts/font = ExtResource( 3 )

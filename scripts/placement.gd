@@ -1,6 +1,7 @@
 extends Node2D
 
 const building_prefab := preload("res://scenes/building.tscn")
+const destruction_ps_prefab := preload("res://scenes/destruction_ps.tscn")
 const invalid_color := Color(0.8, 0, 0)
 
 export var back_button_path: NodePath
@@ -19,7 +20,7 @@ func _ready() -> void:
 	place_guides.rect_size = grid_size * BuildingWorld.SIZE_VECTOR
 	place_guides.rect_position = Vector2(-32, -32)
 	camera.position = place_guides.rect_size / 2 - offset
-	Global.connect_signal_funcs(self, ["select_building"])
+	Global.connect_signal_funcs(self, ["select_building", "destroy_building"])
 
 func _input(event: InputEvent) -> void:
 	var offseted_mouse_pos = get_local_mouse_position() + offset
@@ -45,6 +46,23 @@ func create_building(cell_pos: Vector2, building_name: String):
 	add_child(building_node)
 	building_node.position = cell_pos * BuildingWorld.SIZE
 	grid[cell_pos.y][cell_pos.x] = building_node
+	
+func destroy_building(cell_pos: Vector2):
+	var building_node = Utils.grid_get(grid, cell_pos)
+	if building_node != null:
+		building_node.on_destroy()
+		yield(get_tree(), "idle_frame")
+		var ps = destruction_ps_prefab.instance()
+		add_child(ps)
+		ps.global_position = building_node.global_position
+		ps.texture = building_node.texture
+		ps.restart()
+		
+		building_node.queue_free()
+		grid[cell_pos.y][cell_pos.x] = null
+		
+		yield(get_tree().create_timer(ps.lifetime), "timeout")
+		ps.queue_free()
 	
 func can_place_building(cell_pos: Vector2) -> bool:
 	return Utils.grid_inside_bounds(grid, cell_pos) and grid[cell_pos.y][cell_pos.x] == null

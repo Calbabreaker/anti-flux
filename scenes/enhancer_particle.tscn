@@ -4,7 +4,11 @@
 [ext_resource path="res://scripts/enhancer_particle.gd" type="Script" id=2]
 
 [node name="EnhancerParticle" type="Control"]
+modulate = Color( 1, 0, 0, 1 )
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -12.5

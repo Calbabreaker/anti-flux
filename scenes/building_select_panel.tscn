@@ -38,15 +38,21 @@ __meta__ = {
 }
 
 [node name="BuildingChoose" parent="Wrapper/Container" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 305.0
 margin_bottom = 412.0
 
 [node name="BuildingChoose4" parent="Wrapper/Container" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 325.0
 margin_right = 630.0
 margin_bottom = 412.0
 
 [node name="BuildingChoose5" parent="Wrapper/Container" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_left = 650.0
 margin_right = 956.0
 margin_bottom = 412.0

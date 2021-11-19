@@ -1,4 +1,4 @@
 extends BuildingWorld
 
-func on_timestep(_x: int, _y: int) -> int:
-	return 1
+func on_timestep(_cell_pos: Vector2) -> void:
+	gen_antimatter(1)

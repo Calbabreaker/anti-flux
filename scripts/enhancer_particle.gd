@@ -1,7 +1,7 @@
 extends Control
 
 var target_collect: Control
-var speed := 350
+var speed := 250
 var multiplier: float
 onready var target_pos := target_collect.rect_position
 

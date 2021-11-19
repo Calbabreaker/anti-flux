@@ -15,6 +15,7 @@ var advance_stage_cost := 25
 var end_stage := 1
 
 func _ready() -> void:
+	randomize()
 	set_antimatter(0)
 	set_timesteps_left()
 	bsp_visible(true)
@@ -26,7 +27,7 @@ func timestep_advance():
 		
 	set_timesteps_left(timesteps_left - 1)
 	if timesteps_left == 0:
-		stage_advance_panel.update_show(antimatter, advance_stage_cost, current_stage == end_stage)
+		stage_advance_panel.update_show(antimatter, advance_stage_cost)
 	else:
 		bsp_visible(true)
 		
@@ -43,8 +44,8 @@ func timestep() -> void:
 	yield(get_tree().create_timer(0.5), "timeout")
 	collect_antimatter(0) # checks if no antimatter was created
 
-func building_timestep(building_node, x: int, y: int):
-	building_node.timestep(x, y)
+func building_timestep(building_node, cell_pos: Vector2):
+	building_node.timestep(cell_pos)
 
 func collect_antimatter(amount: int) -> void:
 	set_antimatter(antimatter + amount)
@@ -52,11 +53,14 @@ func collect_antimatter(amount: int) -> void:
 		timestep_advance()
 		
 func stage_advance() -> void:
-	set_antimatter(antimatter - advance_stage_cost)
-	current_stage += 1
-	advance_stage_cost *= 3
-	set_timesteps_left()
-	bsp_visible(true)
+	if current_stage == end_stage and not stage_advance_panel.has_shown_win:
+		stage_advance_panel.show_win()
+	else:
+		current_stage += 1
+		set_antimatter(antimatter - advance_stage_cost)
+		advance_stage_cost *= 3
+		set_timesteps_left()
+		bsp_visible(true)
 
 func bsp_visible(is_visible) -> void:
 	if is_visible:

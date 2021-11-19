@@ -2,24 +2,24 @@
 
 ## Brainstorm
 
-- Platformer game where gravity switches 
-    - Using keybind
-    - Randomly
-    - Jump
-- Factory game 
-    - Puzzle game make shapes
-    - ***Timestep based to make things meeting quota***
-        - Buildings interact with each other
-            - Place them in a limited area
-- Clicker game
-    - Limited clicks so plan
-    - Place buildings 
-- Rules change
-    - Randomly
-    - Interactable
-- Tower defence game
-    - Send enemies to destroy the defence
-    - Enemies can attack towers
+-   Platformer game where gravity switches
+    -   Using keybind
+    -   Randomly
+    -   Jump
+-   Factory game
+    -   Puzzle game make shapes
+    -   **_Timestep based to make things meeting quota_**
+        -   Buildings interact with each other
+            -   Place them in a limited area
+-   Clicker game
+    -   Limited clicks so plan
+    -   Place buildings
+-   Rules change
+    -   Randomly
+    -   Interactable
+-   Tower defence game
+    -   Send enemies to destroy the defence
+    -   Enemies can attack towers
 
 ## Final Idea
 
@@ -41,14 +41,14 @@ Pass through all the stages without being unable to pay for the factory.
 
 #### Theme
 
-- 2D top down fixed camera or moveable camera but limited area.
-- Quite dark with futuristic looking buildings.
+-   2D top down fixed camera or moveable camera but limited area.
+-   Quite dark with futuristic looking buildings.
 
 #### Steps
 
 1. Make a grid based placing system
 2. Make the antimatter currency system
-3. Make buildings generage antimatter (basic for now 1 antimatter per timestep)
+3. Make buildings generage antimatter
 4. Make the payment system for every stage
 5. Make buildings that synergize
 6. Polish
@@ -57,9 +57,9 @@ Pass through all the stages without being unable to pay for the factory.
 
 > This part will need a lot of balancing
 
-- **Simple Generator:** Generates 1 antimatter. (Common)
-- **Enhancer:** Surrounding buildings have their production doubled. (Rare)
-- **Unstable Generator**: Generates 5 antimatter. 20% chance to destroy itself and surrounding buildings. (Uncommon)
-- **Storage**: Gives 20 antimatter when destroyed. (Common)
-- **Vacuum**: Generates 2 antimmater for every sucked up building. Surrounding buildings are sucked into it. (Rare)
-- **Destructive Enhancer**: Surrounding buildings give 10 times more antimatter and are destroyed. (Super Rare)
+-   **Simple Generator:** Generates 1 antimatter. (Common)
+-   **Enhancer:** Surrounding buildings have their production doubled. (Rare)
+-   **Unstable Generator**: Generates 5 antimatter. 20% chance to destroy itself and surrounding buildings. (Uncommon)
+-   **Storage**: Gives 15 antimatter when destroyed. (Uncommon)
+-   **Vacuum**: Generates 2 antimmater for every sucked up building. Surrounding buildings are sucked into it. (Rare)
+-   **Destructive Enhancer**: Surrounding buildings gives 20 times more antimatter. Destroyes itself and surrounding buildings. (Super Rare)
