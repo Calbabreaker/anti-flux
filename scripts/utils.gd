@@ -19,14 +19,9 @@ static func grid_inside_bounds(grid: Array, cell_pos: Vector2) -> bool:
 static func grid_get(grid: Array, cell_pos: Vector2):
 	return grid[cell_pos.y][cell_pos.x] if grid_inside_bounds(grid, cell_pos) else null
 
-# loops through a 2d array calling callback only if the value is not null
-static func grid_loop_through(grid: Array, callback: FuncRef):
-	for y in range(len(grid)):
-		if grid[y] != null:
-			for x in range(len(grid[y])):
-				if grid[y][x] != null:
-					callback.call_func(grid[y][x], Vector2(x, y))
-
 # returns random position in grid
 static func grid_random(grid: Array) -> Vector2:
 	return Vector2(randi() % len(grid[0]), randi() % len(grid)) 
+
+static func same_obj(obj1, obj2) -> bool:
+	return obj1.get_instance_id() == obj2.get_instance_id()

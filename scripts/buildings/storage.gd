@@ -1,4 +1,4 @@
 extends BuildingWorld
 
 func on_destroy() -> void:
-	gen_antimatter(15)
+	gen_antimatter(10)

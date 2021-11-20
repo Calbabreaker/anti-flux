@@ -12,7 +12,8 @@ var antimatter: int
 var current_stage := 1
 var timesteps_left: int
 var advance_stage_cost := 25
-var end_stage := 1
+var asc_increase := 30
+var end_stage := 8
 
 func _ready() -> void:
 	randomize()
@@ -35,31 +36,38 @@ func set_antimatter(value: int):
 	antimatter = value
 	antimatter_label.bbcode_text = "{} {}".format([Global.antimatter_icon_bbcode, antimatter], "{}")
 	
-func set_timesteps_left(value: int = current_stage + 4):
+func set_timesteps_left(value: int = current_stage / 2 + 5):
 	timesteps_left = value
 	timestep_cost_label.bbcode_text = "[right]{} {} due in {} timesteps[/right] ".format([Global.antimatter_icon_bbcode, advance_stage_cost, timesteps_left], "{}")
 
 func timestep() -> void:
-	Utils.grid_loop_through(building_grid.grid, funcref(self, "building_timestep"))
+	for x in range(building_grid.grid_size.x):
+		for y in range(building_grid.grid_size.y):
+			timestep_building(Vector2(x, y))
+		
 	yield(get_tree().create_timer(0.5), "timeout")
 	collect_antimatter(0) # checks if no antimatter was created
 
-func building_timestep(building_node, cell_pos: Vector2):
-	building_node.timestep(cell_pos)
+func timestep_building(cell_pos: Vector2):
+	var building = Utils.grid_get(building_grid.grid, cell_pos)
+	if building:
+		building.timestep(cell_pos)
 
 func collect_antimatter(amount: int) -> void:
 	set_antimatter(antimatter + amount)
-	if particle_storage.get_child_count() == 0 and not building_select_panel.visible:
+	if particle_storage.get_child_count() == 0 && !building_select_panel.visible:
 		timestep_advance()
 		
 func stage_advance() -> void:
-	if current_stage == end_stage and not stage_advance_panel.has_shown_win:
+	current_stage += 1
+	set_antimatter(antimatter - advance_stage_cost)
+	advance_stage_cost += asc_increase
+	asc_increase *= max(1, (pow(current_stage, 2)) / 10)
+	set_timesteps_left()
+	
+	if current_stage == end_stage:
 		stage_advance_panel.show_win()
-	else:
-		current_stage += 1
-		set_antimatter(antimatter - advance_stage_cost)
-		advance_stage_cost *= 3
-		set_timesteps_left()
+	else:	
 		bsp_visible(true)
 
 func bsp_visible(is_visible) -> void:

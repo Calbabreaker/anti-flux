@@ -6,8 +6,6 @@ onready var title_label = $"TitleLabel"
 onready var description_label = $"DescriptionLabel"
 onready var go_endless_button = $"GoEndlessButton"
 
-var has_shown_win := false
-
 func hide_buttons() -> void:
 	pay_label.get_parent().hide()
 	restart_button.hide()
@@ -30,16 +28,19 @@ func update_show(antimatter: int, advance_stage_cost: int) -> void:
 	show()
 	
 func show_win() -> void:
-	has_shown_win = true
 	hide_buttons()
 	go_endless_button.show()
 	title_label.text = "Yay you win!"
 	description_label.text = "You have got through all the stages and won!"
 	show()
 
-func stage_advance() -> void:
+func _on_RestartButton_pressed() -> void:
+	get_tree().change_scene("res://scenes/main.tscn")
+
+func _on_PayButton_pressed() -> void:
 	hide()
 	Global.emit_signal("stage_advance")
 
-func _on_RestartButton_pressed() -> void:
-	get_tree().change_scene("res://scenes/main.tscn")
+func _on_GoEndlessButton_pressed() -> void:
+	hide()
+	Global.emit_signal("bsp_visible", true)

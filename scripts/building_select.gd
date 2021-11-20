@@ -6,17 +6,17 @@ onready var title_label := $"Title"
 onready var texture_rect := $"TextureRect"
 onready var rarity_label := $"RarityLabel"
 
-func set_building(name: String):
-	var building = Global.building_data[name]
-	description_label.text = building.description
-	title_label.text = name
-	texture_rect.texture = Global.building_data[name].texture
+func set_building(building_name: String):
+	current_building_name = building_name
+	var building = Global.building_data[building_name]
+	
+	title_label.text = building_name
+	description_label.bbcode_text = building.description_bbcode
 	rarity_label.bbcode_text = building.rarity.bbcode_text
-	current_building_name = name
+	texture_rect.texture = building.texture
 
 func set_random_building():
-	var rand_num = randi() % Global.building_names.size()
-	var building_name = Global.building_names[rand_num]
+	var building_name = Global.random_building_name()
 	var building_prob = Global.building_data[building_name].rarity.probablity
 	if randi() % 100 < building_prob:
 		set_building(building_name)

@@ -13,7 +13,9 @@ func set_antimatter_label_pos(position: Vector2):
 
 func set_amount(antimatter: int) -> void:
 	amount = antimatter
-	modulate.s = log(float(amount)) / 8
+	modulate.s = log(float(abs(amount))) / 8
+	if amount < 0:
+		rect_scale.y = 0.3
 	
 func _process(delta: float) -> void:
 	rect_rotation += 10

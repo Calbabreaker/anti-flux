@@ -107,5 +107,5 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
-[connection signal="pressed" from="PayButton" to="." method="stage_advance"]
-[connection signal="pressed" from="GoEndlessButton" to="." method="stage_advance"]
+[connection signal="pressed" from="PayButton" to="." method="_on_PayButton_pressed"]
+[connection signal="pressed" from="GoEndlessButton" to="." method="_on_GoEndlessButton_pressed"]
