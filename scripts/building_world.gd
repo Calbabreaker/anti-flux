@@ -12,35 +12,35 @@ var antimatter_collect: Node
 var grid: Array
 
 func _enter_tree() -> void:
-	fit_to_cell_size()
-	
+    fit_to_cell_size()
+
 func fit_to_cell_size():
-	var size = texture.get_size()
-	scale = SIZE_VECTOR / size
-	
+    var size = texture.get_size()
+    scale = SIZE_VECTOR / size
+
 func gen_antimatter(amount: int) -> void:
-	if amount != 0:
-		antimatter_collect = antimatter_collect_prefab.instance()
-		antimatter_collect.set_amount(amount)
-		Global.emit_signal("add_particle", antimatter_collect, self)
-		particle_system.restart()
-		yield(get_tree(), "idle_frame")
-		antimatter_collect = null
-	
+    if amount != 0:
+        antimatter_collect = antimatter_collect_prefab.instance()
+        antimatter_collect.set_amount(amount)
+        Global.emit_signal("add_particle", antimatter_collect, self)
+        particle_system.restart()
+        yield(get_tree(), "idle_frame")
+        antimatter_collect = null
+
 # override this function to do something on timestep
 func on_timestep(_cell_pos: Vector2) -> void:
-	pass
-	
+    pass
+
 # override this function to do something last frame before it is destroyed
 func on_destroy() -> void:
-	pass
+    pass
 
 # calls a function with surrounding buildings
 func loop_through_surrounding(callback: FuncRef, self_cell_pos: Vector2, only_empty: bool = false) -> void:
-	for offset_x in range(-1, 2):
-		for offset_y in range(-1, 2):
-			var cell_pos = Vector2(offset_x, offset_y) + self_cell_pos
-			if Utils.grid_inside_bounds(grid, cell_pos):
-				var building = Utils.grid_get(grid, cell_pos)
-				if only_empty && !building || building && !only_empty:
-					callback.call_func(building, cell_pos)
+    for offset_x in range(-1, 2):
+        for offset_y in range(-1, 2):
+            var cell_pos = Vector2(offset_x, offset_y) + self_cell_pos
+            if Utils.grid_inside_bounds(grid, cell_pos):
+                var building = Utils.grid_get(grid, cell_pos)
+                if only_empty && !building || building && !only_empty:
+                    callback.call_func(building, cell_pos)

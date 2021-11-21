@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enhancer_particle.svg-4df01c6e7bca2064add312ad8d42b26b.stex"
+path="res://.import/enhancer_particle.svg-1eb6d24fb4248235a8cd1b5e71f0041c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enhancer_particle.svg"
-dest_files=[ "res://.import/enhancer_particle.svg-4df01c6e7bca2064add312ad8d42b26b.stex" ]
+source_file="res://assets/textures/enhancer_particle.svg"
+dest_files=[ "res://.import/enhancer_particle.svg-1eb6d24fb4248235a8cd1b5e71f0041c.stex" ]
 
 [params]
 
