@@ -17,10 +17,6 @@ func _enter_tree() -> void:
 func fit_to_cell_size():
 	var size = texture.get_size()
 	scale = SIZE_VECTOR / size
-
-func timestep(cell_pos: Vector2) -> void:
-	antimatter_collect = null
-	on_timestep(cell_pos)
 	
 func gen_antimatter(amount: int) -> void:
 	if amount != 0:
@@ -28,6 +24,8 @@ func gen_antimatter(amount: int) -> void:
 		antimatter_collect.set_amount(amount)
 		Global.emit_signal("add_particle", antimatter_collect, self)
 		particle_system.restart()
+		yield(get_tree(), "idle_frame")
+		antimatter_collect = null
 	
 # override this function to do something on timestep
 func on_timestep(_cell_pos: Vector2) -> void:

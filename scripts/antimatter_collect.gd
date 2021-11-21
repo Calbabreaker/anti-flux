@@ -26,6 +26,7 @@ func _process(delta: float) -> void:
 			# delete self
 			get_parent().remove_child(self)
 			queue_free()
+			SoundManager.collect.play()
 			Global.emit_signal("collect_antimatter", amount)
 	else:
 		time += delta

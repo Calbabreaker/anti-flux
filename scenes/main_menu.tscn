@@ -1,0 +1,124 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/font_main.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/OpenSans-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scripts/main_menu.gd" type="Script" id=3]
+[ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=4]
+[ext_resource path="res://assets/textures/antimatter.svg" type="Texture" id=5]
+[ext_resource path="res://assets/font_description.tres" type="DynamicFont" id=6]
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.205263, 1 ), 0.581023, 0.581023, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 400.0
+emission_ring_axis = Vector3( 45, 45, 1 )
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 1000.0
+initial_velocity_random = 0.74
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 2 )
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+position = Vector2( 507.748, 275.923 )
+amount = 50
+lifetime = 2.0
+randomness = 1.0
+process_material = SubResource( 2 )
+texture = ExtResource( 5 )
+
+[node name="Label" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -380.0
+margin_top = 37.0
+margin_right = 380.0
+margin_bottom = 133.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center][shake rate=15 level=30]Anti Flux[/shake][/center]"
+text = "Anti Flux"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -76.5
+margin_top = -52.0
+margin_right = 76.5
+margin_bottom = 4.0
+custom_fonts/font = ExtResource( 1 )
+text = "Play"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Links" type="LinkButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -159.5
+margin_top = -117.0
+margin_right = 159.5
+margin_bottom = -67.0
+custom_fonts/font = ExtResource( 4 )
+text = "Check out other projects"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MadeBy" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -188.5
+margin_top = 143.0
+margin_right = 188.5
+margin_bottom = 193.0
+custom_fonts/font = ExtResource( 4 )
+text = "Made by Calbabreaker"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credit" type="LinkButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -213.5
+margin_top = -46.0
+margin_right = 213.5
+margin_bottom = -23.0
+custom_fonts/font = ExtResource( 6 )
+text = "Background music by Clacksberg (CC0) on freesound.org"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="Links" to="." method="_on_Links_pressed"]
+[connection signal="pressed" from="Credit" to="." method="_on_Credit_pressed"]

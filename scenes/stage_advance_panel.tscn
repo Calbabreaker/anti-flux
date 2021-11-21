@@ -49,17 +49,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DescriptionLabel" type="Label" parent="."]
+[node name="DescriptionLabel" type="RichTextLabel" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -171.0
 margin_top = 84.0
 margin_right = 170.0
 margin_bottom = 133.0
-custom_fonts/font = ExtResource( 3 )
-text = "Payment for the factory is due. and that's how we like it yes"
-align = 1
-autowrap = true
+custom_fonts/normal_font = ExtResource( 3 )
+bbcode_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -84,8 +82,8 @@ anchor_bottom = 1.0
 mouse_filter = 1
 custom_fonts/normal_font = ExtResource( 4 )
 bbcode_enabled = true
-bbcode_text = "[center]Pay [font=res://assets/bbcode_font.tres][img]res://assets/antimatter.svg[/img][/font] <int>[/center]"
-text = "Pay  <int>"
+bbcode_text = "[center]Pay[/center]"
+text = "Pay"
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -107,5 +105,6 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="RestartButton" to="." method="_on_RestartButton_pressed"]
+[connection signal="meta_clicked" from="DescriptionLabel" to="." method="_on_DescriptionLabel_meta_clicked"]
 [connection signal="pressed" from="PayButton" to="." method="_on_PayButton_pressed"]
 [connection signal="pressed" from="GoEndlessButton" to="." method="_on_GoEndlessButton_pressed"]

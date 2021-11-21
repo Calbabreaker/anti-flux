@@ -3,7 +3,7 @@
 [ext_resource path="res://scripts/building_select.gd" type="Script" id=1]
 [ext_resource path="res://assets/font_title.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/font_description.tres" type="DynamicFont" id=3]
-[ext_resource path="res://assets/simple_generator.svg" type="Texture" id=4]
+[ext_resource path="res://assets/textures/simple_generator.svg" type="Texture" id=4]
 
 [node name="BuildingSelect" type="Button"]
 anchor_right = 1.0
@@ -55,7 +55,7 @@ mouse_filter = 1
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Very long description[/center]"
-text = "Very long description"
+text = "[center]Very long description[/center]"
 
 [node name="RarityLabel" type="RichTextLabel" parent="."]
 anchor_left = 0.5
@@ -64,9 +64,10 @@ margin_left = -160.5
 margin_top = 211.0
 margin_right = 160.5
 margin_bottom = 254.0
+mouse_filter = 1
 custom_fonts/normal_font = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Rare[/center]"
-text = "Rare"
+text = "[center]Rare[/center]"
 
 [connection signal="pressed" from="." to="." method="_on_BuildingSelect_pressed"]

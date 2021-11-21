@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/generate.wav-f530cb0758305947b424b21d68329d84.sample"
+
+[deps]
+
+source_file="res://assets/sounds/generate.wav"
+dest_files=[ "res://.import/generate.wav-f530cb0758305947b424b21d68329d84.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

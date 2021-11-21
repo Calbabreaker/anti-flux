@@ -51,18 +51,21 @@ func destroy_building(cell_pos: Vector2):
 	var building_node = Utils.grid_get(grid, cell_pos)
 	if building_node:
 		building_node.on_destroy()
-		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame") # wait one frame to let enhancers enhance the potential generated antmatter
+		
 		var ps = destruction_ps_prefab.instance()
 		add_child(ps)
 		ps.global_position = building_node.global_position
 		ps.texture = building_node.texture
 		ps.restart()
+		SoundManager.destroy.play()
 		
 		building_node.queue_free()
 		grid[cell_pos.y][cell_pos.x] = null
 		
 		yield(get_tree().create_timer(ps.lifetime), "timeout")
 		ps.queue_free()
+		
 	
 func can_place_building(cell_pos: Vector2) -> bool:
 	return Utils.grid_inside_bounds(grid, cell_pos) && !grid[cell_pos.y][cell_pos.x]

@@ -39,12 +39,13 @@ _global_script_class_icons={
 [application]
 
 config/name="random godot game"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/main_menu.tscn"
 config/icon="res://assets/icon.png"
 
 [autoload]
 
 Global="*res://scripts/global.gd"
+SoundManager="*res://scenes/sound.tscn"
 
 [display]
 

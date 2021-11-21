@@ -1,6 +1,6 @@
 extends Node
 
-const antimatter_icon_bbcode = "[font=res://assets/bbcode_font.tres][img]res://assets/antimatter.svg[/img][/font]"
+const antimatter_icon_bbcode = "[font=res://assets/bbcode_font.tres][img]res://assets/textures/antimatter.svg[/img][/font]"
 
 var Common := Rarity.new(100, "Common", "#dedede")
 var Uncommon := Rarity.new(55, "Uncommon", "#888888")
@@ -16,8 +16,8 @@ var building_data := {
 	"Space Generator": BuildingData.new("Gives {} 1 for every empty surrounding cells.", "space_generator", Uncommon),
 	"Random++ Generator": BuildingData.new("Gives {} 20 or {} -15.", "random++_generator", Uncommon),
 	"Enhancer": BuildingData.new("Surrounding buildings gives 2 times more {}.", "enhancer", Rare),
-	"Magic Enhancer": BuildingData.new("Surrounding buildings gives 5 times more {}. Makes a random surrounding building's productive negative.", "magic_enhancer", Rare),
-	"Vacuum": BuildingData.new("Destroys surrounding buildings. Gives {} 1 for every destroyed building.", "vacuum", Rare),
+	"Magic Enhancer": BuildingData.new("Surrounding buildings gives 5 times more {}. Makes a random surrounding building's production negative.", "magic_enhancer", Rare),
+	"Vacuum": BuildingData.new("Destroys surrounding buildings. Gives {} 2 for every destroyed building.", "vacuum", Rare),
 	"Building Generator": BuildingData.new("Creates a random building inside a surrounding cell.", "building_generator", SuperRare),
 	"Destructive Enhancer": BuildingData.new("Surrounding buildings gives 15 times more {}. Destroys itself and surrounding buildings.", "destructive_enhancer", SuperRare),
 }

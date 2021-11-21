@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/antimatter.svg" type="Texture" id=1]
+[ext_resource path="res://assets/textures/antimatter.svg" type="Texture" id=1]
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.982558, 0.135776 ), 0.0, 0.0, 0, 0 ]

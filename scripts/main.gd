@@ -11,7 +11,7 @@ onready var back_button := $"CanvasLayer/BackButton"
 var antimatter: int
 var current_stage := 1
 var timesteps_left: int
-var advance_stage_cost := 25
+var advance_stage_cost := 20
 var asc_increase := 30
 var end_stage := 8
 
@@ -38,20 +38,24 @@ func set_antimatter(value: int):
 	
 func set_timesteps_left(value: int = current_stage / 2 + 5):
 	timesteps_left = value
-	timestep_cost_label.bbcode_text = "[right]{} {} due in {} timesteps[/right] ".format([Global.antimatter_icon_bbcode, advance_stage_cost, timesteps_left], "{}")
+	timestep_cost_label.bbcode_text = "[right]{} {} due in {} turns[/right] ".format([Global.antimatter_icon_bbcode, advance_stage_cost, timesteps_left], "{}")
 
 func timestep() -> void:
 	for x in range(building_grid.grid_size.x):
 		for y in range(building_grid.grid_size.y):
 			timestep_building(Vector2(x, y))
-		
-	yield(get_tree().create_timer(0.5), "timeout")
-	collect_antimatter(0) # checks if no antimatter was created
+	
+	# if no antimatter was generated there would be no collects to trigger timestep advance
+	if particle_storage.get_child_count() == 0:
+		yield(get_tree().create_timer(0.5), "timeout")
+		timestep_advance()
+	else:
+		SoundManager.generate.play()
 
 func timestep_building(cell_pos: Vector2):
 	var building = Utils.grid_get(building_grid.grid, cell_pos)
 	if building:
-		building.timestep(cell_pos)
+		building.on_timestep(cell_pos)
 
 func collect_antimatter(amount: int) -> void:
 	set_antimatter(antimatter + amount)
@@ -62,12 +66,12 @@ func stage_advance() -> void:
 	current_stage += 1
 	set_antimatter(antimatter - advance_stage_cost)
 	advance_stage_cost += asc_increase
-	asc_increase *= max(1, (pow(current_stage, 2)) / 10)
+	asc_increase += 30
 	set_timesteps_left()
 	
-	if current_stage == end_stage:
+	if current_stage == end_stage + 1:
 		stage_advance_panel.show_win()
-	else:	
+	else:
 		bsp_visible(true)
 
 func bsp_visible(is_visible) -> void:

@@ -5,7 +5,7 @@
 [ext_resource path="res://scenes/stage_advance_panel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/font_main.tres" type="DynamicFont" id=6]
 [ext_resource path="res://scripts/main.gd" type="Script" id=7]
-[ext_resource path="res://assets/simple_generator.svg" type="Texture" id=8]
+[ext_resource path="res://assets/textures/simple_generator.svg" type="Texture" id=8]
 [ext_resource path="res://scripts/building_world.gd" type="Script" id=9]
 
 [sub_resource type="Animation" id=2]
@@ -45,8 +45,8 @@ margin_right = 315.0
 margin_bottom = 69.0
 custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "[font=res://assets/bbcode_font.tres][img]res://assets/antimatter.svg[/img][/font] <int>"
-text = " <int>"
+bbcode_text = "<int>"
+text = "<int>"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -60,8 +60,8 @@ margin_right = -12.0
 margin_bottom = 84.0
 custom_fonts/normal_font = ExtResource( 6 )
 bbcode_enabled = true
-bbcode_text = "[right][font=res://assets/bbcode_font.tres][img]res://assets/antimatter.svg[/img][/font]<int> due in <int> timesteps  [/right]"
-text = "<int> due in <int> timesteps  "
+bbcode_text = "[right]s<int> due in <int> timesteps  [/right]"
+text = "s<int> due in <int> timesteps  "
 __meta__ = {
 "_edit_use_anchors_": false
 }
