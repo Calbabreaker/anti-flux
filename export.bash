@@ -3,6 +3,8 @@
 green=`tput bold setaf 2`
 reset=`tput sgr0`
 
+rm -fr exports
+
 info() {
     echo "$green$1$reset"
 }
@@ -10,12 +12,14 @@ info() {
 export_as() {
     info "Exporting $1..."
     mkdir -p exports/$(dirname $2)
-    godot --export "$1" exports/$2 --no-window
+    godot --export "$1" exports/$2 --no-window 
 
     if [[ $2 != *.zip ]]; then
+        pushd exports > /dev/null
         export_dir=$(dirname $2)
         info "Zipping exports/$export_dir.zip..."
-        zip -r exports/$export_dir.zip exports/$export_dir -9
+        zip -r $export_dir.zip $export_dir -9
+        popd > /dev/null
     fi
 }
 

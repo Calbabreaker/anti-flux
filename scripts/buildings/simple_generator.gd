@@ -1,4 +1,4 @@
 extends BuildingWorld
 
 func on_timestep(_cell_pos: Vector2) -> void:
-    gen_antimatter(2)
+	gen_antimatter(2)
