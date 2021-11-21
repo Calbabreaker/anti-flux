@@ -23,3 +23,18 @@ export_as HTML5 anti-flux-html/index.html
 export_as "Windows Desktop" anti-flux-windows/anti-flux-windows.exe
 export_as "Linux/X11" anti-flux-linux/anti-flux-linux.x86_64
 export_as "Mac OSX" anti-flux-macos.zip
+
+printf "\nPush to github pages? [y/N] "
+read input
+if [ "$input" = "y" ]; then 
+    current_commit=$(git rev-parse HEAD)
+    cd exports
+    [ ! -d "gh-pages" ] && git worktree add gh-pages
+    cd gh-pages
+    git rm -r .
+    cp ../anti-flux-html/* .
+    git add .
+    git commit -m "deploy at $current_commit"
+    git push origin gh-pages
+fi
+
