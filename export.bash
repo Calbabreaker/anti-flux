@@ -1,5 +1,7 @@
 #!/bin/bash
 
+PROJECT_NAME="anti-flux"
+
 green=`tput bold setaf 2`
 reset=`tput sgr0`
 
@@ -23,10 +25,10 @@ export_as() {
     fi
 }
 
-export_as HTML5 anti-flux-html/index.html
-export_as "Windows Desktop" anti-flux-windows/anti-flux-windows.exe
-export_as "Linux/X11" anti-flux-linux/anti-flux-linux.x86_64
-export_as "Mac OSX" anti-flux-macos.zip
+export_as HTML5 $PROJECT_NAME-html/index.html
+export_as "Windows Desktop" $PROJECT_NAME-windows/$PROJECT_NAME-windows.exe
+export_as "Linux/X11" $PROJECT_NAME-linux/$PROJECT_NAME-linux.x86_64
+export_as "Mac OSX" $PROJECT_NAME-macos.zip
 
 printf "\nPush to github pages? [y/N] "
 read input
@@ -36,7 +38,7 @@ if [ "$input" = "y" ]; then
     [ ! -d "gh-pages" ] && git worktree add gh-pages
     cd gh-pages
     git rm -r .
-    cp ../anti-flux-html/* .
+    cp ../$PROJECT_NAME-html/* .
     git add .
     git commit -m "deploy at $current_commit"
     git push origin gh-pages
