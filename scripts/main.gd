@@ -1,12 +1,12 @@
 extends Node2D
 
-onready var building_grid := $"BuildingGrid"
-onready var particle_storage := $"CanvasLayer/ParticleStorage"
-onready var building_select_panel := $"CanvasLayer/BuildingSelectPanel"
-onready var antimatter_label := $"CanvasLayer/AntimatterLabel"
-onready var timestep_cost_label := $"CanvasLayer/TimestepCostLabel"
-onready var stage_advance_panel := $"CanvasLayer/StageAdvancePanel"
-onready var back_button := $"CanvasLayer/BackButton"
+onready var building_grid := $BuildingGrid
+onready var particle_storage := $CanvasLayer/ParticleStorage
+onready var building_select_panel := $CanvasLayer/BuildingSelectPanel
+onready var antimatter_label := $CanvasLayer/AntimatterLabel
+onready var timestep_cost_label := $CanvasLayer/TimestepCostLabel
+onready var stage_advance_panel := $CanvasLayer/StageAdvancePanel
+onready var back_button := $CanvasLayer/BackButton
 
 var antimatter: int
 var current_stage := 1

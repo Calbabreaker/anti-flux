@@ -9,7 +9,7 @@ var amount: int
 var time := 0.0
 
 func set_antimatter_label_pos(position: Vector2):
-	target_pos = position + $"TextureRect".rect_size / 2
+	target_pos = position + $TextureRect.rect_size / 2
 
 func set_amount(antimatter: int) -> void:
 	amount = antimatter
