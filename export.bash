@@ -35,7 +35,7 @@ read input
 if [ "$input" = "y" ]; then 
     current_commit=$(git rev-parse HEAD)
     cd exports
-    [ ! -d "gh-pages" ] && git worktree add gh-pages
+    [ ! -d "gh-pages" ] && git worktree add gh-pages gh-pages
     cd gh-pages
     git rm -r .
     cp ../$PROJECT_NAME-html/* .
