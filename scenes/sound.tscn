@@ -14,19 +14,19 @@ stereo = true
 [node name="Node" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="Music" type="AudioStreamPlayer2D" parent="."]
+[node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -2.0
 autoplay = true
 
-[node name="Click" type="AudioStreamPlayer2D" parent="."]
+[node name="Click" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 
-[node name="Collect" type="AudioStreamPlayer2D" parent="."]
+[node name="Collect" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 
-[node name="Generate" type="AudioStreamPlayer2D" parent="."]
+[node name="Generate" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
-[node name="Destroy" type="AudioStreamPlayer2D" parent="."]
+[node name="Destroy" type="AudioStreamPlayer" parent="."]
 stream = SubResource( 1 )
