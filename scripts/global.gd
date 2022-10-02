@@ -10,7 +10,7 @@ var SuperRare := Rarity.new(8, "Super Rare", "#8530b9")
 var building_data := {
 	"Simple Generator": BuildingData.new("Gives {} 2.", "simple_generator", Common),
 	"Random Generator": BuildingData.new("Gives {} 0 to {} 5.", "random_generator", Common),
-	"Delayed Generator": BuildingData.new("Gives {} 20 every 4 timesteps. Gives {} -2 every timestep.", "delayed_generator", Common),
+	"Delayed Generator": BuildingData.new("Gives {} 20 every 4 turns. Gives {} -2 every turn.", "delayed_generator", Common),
 	"Storage": BuildingData.new("Gives {} 10 when destroyed.", "storage", Common),
 	"Unstable Generator": BuildingData.new("Gives {} 5. 20% to destroy itself and surrounding buildings.", "unstable_generator", Uncommon),
 	"Space Generator": BuildingData.new("Gives {} 1 for every empty surrounding cells.", "space_generator", Uncommon),
